@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  position: fixed;
+  background-image: url('./assets/background/green/pngtree-green-watercolor-background-and-abstract-texture-background-picture-image_1230214.jpg');
+  margin-top: 15px;
+  padding: 10px ;
+  height: 993px;
+  width: 1130px;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  padding-left: .5rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+}
+
+.odd-row {
+  background-color: rgba(199, 248, 112, 0.6);
+}
+
+.even-row {
+  background-color: #ffffff;
+}
