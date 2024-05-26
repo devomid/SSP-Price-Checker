@@ -205,7 +205,7 @@ const EntrySection = () => {
 
         if (tamdidDate) {
 
-            if (daysDifference < 456) {
+            if (daysDifference <= 365) {
                 setSanavat('تمدید تشویقی');
             } else if (daysDifference <= 456 && daysDifference > 365) {
                 setSanavat('بدون سنوات');
@@ -240,7 +240,7 @@ const EntrySection = () => {
                 setTamdidErr(true);
             } else {
                 setTamdidErr(false);
-                if (daysDifference < 456) {
+                if (daysDifference <= 365) {
                     setTamdidPrice(tashvighi);
 
                 } else if (daysDifference <= 456 && daysDifference > 365) {
@@ -275,7 +275,7 @@ const EntrySection = () => {
         const daysDifference = currentDate.diff(differdDate, 'days');
         var tamdidMotevaliPriceValue;
 
-        if (daysDifference <= 456) {
+        if (daysDifference <= 356) {
             if (0 < tamdidMotevali && tamdidMotevali <= 2) {
                 console.log(1);
                 tamdidMotevaliPriceValue = (Number(tamdidPrice) * 25) / 100
@@ -461,7 +461,7 @@ const EntrySection = () => {
             const currentDate = moment();
             const differdDate = moment(tamdidDate, 'jYYYY/jMM/jDD');
             const daysDifference = currentDate.diff(differdDate, 'days');
-            if (daysDifference <= 456) {
+            if (daysDifference <= 365) {
                 setJameKol(total - Number(destPrice) - Number(tamdidPrice) + Number(tashvighiPrice));
             } else {
                 setJameKol(total - Number(destPrice));
@@ -485,7 +485,7 @@ const EntrySection = () => {
             const currentDate = moment();
             const differdDate = moment(tamdidDate, 'jYYYY/jMM/jDD');
             const daysDifference = currentDate.diff(differdDate, 'days');
-            if (daysDifference <= 456) {
+            if (daysDifference <= 365) {
                 setJameKolBefore(total - Number(destPriceBefore) - Number(tamdidPriceBefore) + Number(tashvighiPriceBefore))
             } else setJameKolBefore(total - Number(destPriceBefore))
         }
@@ -499,7 +499,7 @@ const EntrySection = () => {
             const currentDate = moment();
             const differdDate = moment(tamdidDate, 'jYYYY/jMM/jDD');
             const daysDifference = currentDate.diff(differdDate, 'days');
-            if (daysDifference <= 456) {
+            if (daysDifference <= 365) {
                 setJameKolAfterTakhfif(Number(totalAfter))
             } else setJameKolAfterTakhfif(Number(totalAfter) - Number(destAfterTakhfif));
         }
