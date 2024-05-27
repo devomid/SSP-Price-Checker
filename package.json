@@ -17,6 +17,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "electron-updater": "^6.1.8",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
@@ -73,15 +74,30 @@
     "electron-builder": "^24.13.3",
     "electron-is-dev": "^3.0.1"
   },
-  "files": ["build", "*.js", "node_modules", "package.json","index.html", "package-lock.json"],
+  "files": [
+    "build",
+    "*.js",
+    "node_modules",
+    "package.json",
+    "index.html",
+    "package-lock.json"
+  ],
   "build": {
     "appId": "SSP Price Checker",
+    "productName": "SSP Price Checker",
     "extends": null,
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "devomid",
+        "repo": "SSP-Price-Checker"
+      }
+    ],
     "win": {
       "target": [
         "nsis"
       ],
-      "icon":"./src/assets/icon/icon.ico"
+      "icon": "./src/assets/icon/icon.ico"
     },
     "directories": {
       "buildResources": "resources",

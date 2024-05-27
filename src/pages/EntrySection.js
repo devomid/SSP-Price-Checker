@@ -11,6 +11,8 @@ import 'jalaali-react-date-picker/lib/styles/index.css';
 import moment from 'moment-jalaali';
 import 'moment/locale/fa';
 import 'moment-jalaali';
+const { ipcRenderer } = window.require('electron');
+
 
 
 const EntrySection = () => {
@@ -317,7 +319,7 @@ const EntrySection = () => {
 
     const claculateKarbarEzafe = () => {
         if (destCode) {
-            if (tamdidPrice){
+            if (tamdidPrice) {
                 if (karbarEzafe == 0 || appCodes.hasOwnProperty(destCode)) {
                     const karbarEzafeValue = (Number(tamdidPrice) / 10) * (Number(karbarEzafe))
                     setKarbarEzafePrice(karbarEzafeValue)
@@ -328,7 +330,7 @@ const EntrySection = () => {
 
             } else {
                 if (karbarEzafe == 0 || appCodes.hasOwnProperty(destCode)) {
-    
+
                     if (networkCodes.includes(destCode) || karbarEzafe == 0) {
                         const karbarEzafeValue = Number(((appPrices[destCode]) / 10) * karbarEzafe)
                         setKarbarEzafePrice(karbarEzafeValue)
@@ -709,6 +711,22 @@ const EntrySection = () => {
     useEffect(() => {
         reset()
     }, [resetState]);
+
+    useEffect(() => {
+
+        ipcRenderer.on('update-available', () => {
+            console.log('update available');
+        });
+
+        ipcRenderer.on('download-progress', (event, progressObj) => {
+            console.log(event);
+            console.log(progressObj);
+        });
+
+        ipcRenderer.on('update-downloaded', () => {
+            console.log('download finished');
+        });
+    }, [])
 
 
     return (

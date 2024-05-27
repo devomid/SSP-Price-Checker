@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, autoUpdater } = require('electron')
 const { ipcMain } = require('electron')
 const { protocol } = require('electron');
 
@@ -24,7 +24,9 @@ function createWindow() {
         resizable: false
     });
 
-    mainWindow.setMenuBarVisibility(false)    
+    mainWindow.setMenuBarVisibility(false)
+
+    mainWindow.webContents.openDevTools()
 
     mainWindow.loadURL(
         process.env.ELECTRON_START_URL ||
@@ -42,6 +44,19 @@ function createWindow() {
 }
 
 app.on('ready', createWindow)
+
+autoUpdater.on('update-available', () => {
+    mainWindow.webContents.send('update-available');
+});
+
+autoUpdater.on('download-progress', (progressObj) => {
+    mainWindow.webContents.send('download-progress', progressObj);
+});
+
+autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update-downloaded');
+    autoUpdater.quitAndInstall()
+});
 
 ipcMain.on('bye', () => {
     app.quit()
