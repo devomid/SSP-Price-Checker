@@ -28,7 +28,7 @@ const About = ({ open, setOpen }) => {
                                 SSP Price Calculation Utility{'\n'}
                                 created and developed by: Omid Azad{'\n'}
                                 Date created: May 5th 2024{'\n'}
-                                Ver 2.0.1
+                                Ver 2.1.0
                             </Typography>
                         </Box>
                     </Box>
