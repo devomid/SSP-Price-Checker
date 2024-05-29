@@ -44,9 +44,6 @@ function App() {
               <EntrySection />
             </Box>
 
-
-
-
           </Box>
 
         </div>

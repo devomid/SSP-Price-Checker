@@ -1,6 +1,10 @@
-const { app, BrowserWindow, autoUpdater } = require('electron')
+const { app, BrowserWindow} = require('electron')
 const { ipcMain } = require('electron')
 const { protocol } = require('electron');
+const {autoUpdater} = require('electron-updater');
+const log = require('electron-log');
+
+log.log("app ver: " + app.getVersion())
 
 const path = require('path')
 const url = require('url');
@@ -26,7 +30,7 @@ function createWindow() {
 
     mainWindow.setMenuBarVisibility(false)
 
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     mainWindow.loadURL(
         process.env.ELECTRON_START_URL ||
@@ -43,20 +47,42 @@ function createWindow() {
     })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+    createWindow()
+    autoUpdater.checkForUpdatesAndNotify()
+})
 
-autoUpdater.on('update-available', () => {
-    mainWindow.webContents.send('update-available');
+
+autoUpdater.on("checking-for-update", () => {
+    mainWindow.webContents.send('updateMsg', { type: 'checking' })
+})
+
+autoUpdater.on("update-available", () => {
+    mainWindow.webContents.send('updateMsg', {type: 'availaible'})
+})
+
+autoUpdater.on('update-not-available', () => {
+    mainWindow.webContents.send('updateMsg', {type: 'notAvailable'})
+})
+
+autoUpdater.on('error', (err) => {
+    log.info(err);
+    mainWindow.webContents.send('updateMsg', { type: 'error', data: err })
+})
+
+autoUpdater.on("download-progress", (progressObj) => {
+    mainWindow.webContents.send('updateMsg', { type: 'progress', data: progressObj })
 });
 
-autoUpdater.on('download-progress', (progressObj) => {
-    mainWindow.webContents.send('download-progress', progressObj);
-});
+autoUpdater.on('update-cancelled', () => {
+    mainWindow.webContents.send('updateMsg', {type: 'cancelled'})
+})
 
-autoUpdater.on('update-downloaded', () => {
-    mainWindow.webContents.send('update-downloaded');
+autoUpdater.on("update-downloaded", () => {
+    mainWindow.webContents.send('updateMsg', {type: 'success'})
     autoUpdater.quitAndInstall()
-});
+})
+
 
 ipcMain.on('bye', () => {
     app.quit()
