@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+                         
+<br/>
+<div align="center">
+<a href="https://github.com/ShaanCoding/ReadME-Generator">
+<img src="https://github.com/devomid/SSP-Price-Checker/blob/main/public/logo512.png?raw=true" alt="Logo" width="80" height="80">
+</a>
+<h3 align="center">SSP Price Checker</h3>
+<p align="center">
+Utility app to calculate upgrade and price of holoo products by software codes, add or remove modules and maintenances
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
+<br/>
+  
+<a href="https://github.com/devomid/SSP-Price-Checker/issues">Report Bug .</a>
 
-## Available Scripts
+</p>
+</div>
 
-In the project directory, you can run:
+ ## About The Project
 
-### `npm start`
+![Product Screenshot](https://github.com/devomid/SSP-Price-Checker/blob/main/src/assets/images/Screenshot%202024-05-30%20at%2012.06.36%E2%80%AFAM.png?raw=true)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  SSP Price Checker is an app used in SSP (Seraj Sabz Partikan Co) sale department for every price and info mining about Holoo Software.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  What is Holoo?
 
-### `npm test`
+  How I ended up even making this app?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+  Holoo is an accounting software which has many varieties distinguished by codes like 11,  8134, 25 and so, which every one of them has different features and prices.
+In SSP Co that I'm working for, there are sale technicians who they have to know most of these hundreds of codes with their prices and calculate their differences whenever a customer wants to upgrade or downgrade from one code to another.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Holoo company has also yearly warranty that has different price for every code. Customers can add hundreds of modules and features to their code and they have their prices too. A sale person should memorize most of these datas which they are too many to memorize easily.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+So I decided to  design a software that helps my coworkers to just give them price of every code so they won't have to memorize them. But this easy peasy little free time project got bigger and bigger and it became a complete app usable for all purposes in sale department where staffs can use it to calculate everything about Holoo software codes, prices, modules and also warranty prices.
+ ### Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This app is made with Electron JS and React JS and also styled with Material UI.
 
-### `npm run eject`
+- [Electron](https://www.electronjs.org)
+- [React](https://reactjs.org)
+- [MaterialUI](https://mui.com/material-ui/)
+ ### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To see the project and explore the code you can clone the repo and after installing node_modules you can run the app by simply run `npm start`. 
+ ## Contact
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Omid Azad  mail.dev.oml@gmail.com.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Project Link: https://github.com/devomid/SSP-Price-Checker
+ ## Acknowledgments
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+I got help from many many sources that I can't remember to mention here but here is some of them I can recall.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [makeread.me](https://github.com/ShaanCoding/ReadME-Generator)
+- [Stack Overflow](https://stackoverflow.co)
+- [GitHub](https://github.com)
+- [Aria](https://www.opera.com/features/aria)
+- [npm](https://www.npmjs.com)
+- [Jalaali React Datepicker](https://www.npmjs.com/package/jalaali-react-date-picker)
+- [electron-builder](https://github.com/electron-userland/electron-builder)
+- [electron-log](https://www.npmjs.com/package/electron-log)
+- [electron-updater](https://www.npmjs.com/package/electron-updater)
