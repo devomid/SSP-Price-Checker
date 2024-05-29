@@ -1,6 +1,7 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, List, ListItem, ListItemText, Stack, Switch } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, List, ListItem, ListItemText, Stack, Switch, TextField } from "@mui/material";
 import { GeneralState } from "../context/generalContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
 const KhadamatDialog = ({ open, setOpen }) => {
@@ -10,7 +11,9 @@ const KhadamatDialog = ({ open, setOpen }) => {
 
     const [selectedKhadamat, setSelectedKhadamat] = useState([]);
     const [checkedStates, setCheckedStates] = useState(Array(khadamatTitles.length).fill(false));
-
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredKhadamat, setFilteredKhadamat] = useState([]);
+    const [originalIndices, setOriginalIndices] = useState()
     const { setKhadamatPrice } = GeneralState();
 
     const handleCancel = () => {
@@ -46,27 +49,61 @@ const KhadamatDialog = ({ open, setOpen }) => {
         setOpen(false);
     };
 
+    const handleSearchTermChange = (event) => {
+        // Update the search term state
+        setSearchTerm(event.target.value);
+    };
+
+    useEffect(() => {
+        // Filter the kits and modulesPrices arrays based on the search term
+        const filtereddKhadamatArr = khadamatTitles.filter((khadamatTitle) => khadamatTitle.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        const originalIndicesvalue = filtereddKhadamatArr.map((searchResultsItem) => {
+            return khadamatTitles.findIndex((khadamatTitle) => khadamatTitle === searchResultsItem);
+        }).filter((originalIndex) => originalIndex !== -1);
+
+        setOriginalIndices(originalIndicesvalue)
+
+        // Set the state of the filteredKitsArr and filteredModulesPrices arrays
+        setFilteredKhadamat(filtereddKhadamatArr);
+    }, [searchTerm]);
+
     return (
         <Box>
             <Dialog sx={{ backgroundColor: 'rgba(252, 243, 224, 0.6)', backdropFilter: 'blur(12px) saturate(180%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
-                <DialogTitle>{"خدمات کارشناسی"}</DialogTitle>
-                <DialogContent dividers>
-                    <List sx={{ width: '100%', maxWidth: 360, maxHeight: 400 }}>
-                        {khadamatTitles.map((khedmatTitle, index) =>
-                            <Box key={khedmatTitle}>
-                                <ListItem >
-                                    <ListItemText sx={{ ml: 5 }} primary={khedmatTitle} secondary={khadamatPrices[index]} />
-                                    <Switch checked={checkedStates[index]} onChange={(event) => handleSwitchChange(index, event)} edge="end" />
-                                </ListItem>
-                                <Divider variant="middle" component="li" />
-                            </Box>
-                        )}
+                <DialogContent sx={{ width: 500, height: 600 }} dividers>
+                    <List sx={{ width: '100%', maxWidth: 500, maxHeight: 400 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 3 }}>
+                            <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                            <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="کیت ها و ماژول های برگشتی" variant="standard" style={{ direction: "rtl" }} />
+                        </Box>
+                        {searchTerm ? (
+                            filteredKhadamat.map((filteredKit, index) => {
+                                const originalIndex = originalIndices[index];
+                                return (
+                                    <Box key={filteredKit}>
+                                        <ListItem >
+                                            <ListItemText sx={{ ml: 10 }} primary={filteredKit} secondary={originalIndex !== -1 ? khadamatPrices[originalIndex] : null} />
+                                            <Switch checked={checkedStates[originalIndex]} onChange={(event) => handleSwitchChange(originalIndex, event)} edge="end" />
+                                        </ListItem>
+                                        <Divider variant="middle" component="li" />
+                                    </Box>
+                                )
+                            })) : (khadamatTitles.map((khedmatTitle, index) =>
+                                <Box key={khedmatTitle}>
+                                    <ListItem >
+                                        <ListItemText sx={{ ml: 5 }} primary={khedmatTitle} secondary={khadamatPrices[index]} />
+                                        <Switch checked={checkedStates[index]} onChange={(event) => handleSwitchChange(index, event)} edge="end" />
+                                    </ListItem>
+                                    <Divider variant="middle" component="li" />
+                                </Box>
+                            ))}
                     </List>
                 </DialogContent>
                 <DialogActions>
                     <Stack direction='row' spacing={1} sx={{ width: '100%', m: '10px 5px' }} justifyContent='space-around'>
-                        <Button color="error" variant="contained" onClick={handleCancel}>انصراف و پاک کردن فرم</Button>
-                        <Button color="success" variant="contained" onClick={handleAddKits}>افزودن کیت ها</Button>
+                        <Button sx={{ width: '45%' }} color="error" variant="outlined" onClick={handleCancel}>انصراف و پاک کردن فرم</Button>
+                        <Button sx={{ width: '45%' }} color="primary" variant="outlined" onClick={handleAddKits}>افزودن خدمات کارشناسی</Button>
                     </Stack>
                 </DialogActions>
             </Dialog>

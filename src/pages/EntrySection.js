@@ -114,13 +114,13 @@ const EntrySection = () => {
     const [updateModal, setUpdateModal] = useState(false);
 
     ipcRenderer.on('updateMsg', (event, message) => {
-        if(message.type === 'available') {
+        if (message.type === 'available') {
             setUpdateModal(true);
         };
     });
 
     ipcRenderer.on('updateMsg', (event, message) => {
-        if(message.type === 'success') {
+        if (message.type === 'success') {
             setTimeout(() => {
                 setUpdateModal(false);
             }, 1500);
@@ -493,7 +493,7 @@ const EntrySection = () => {
     };
 
     const calculateBeforeArzeshAfzoode = () => {
-        let total = Number((Number(destPriceBefore) + Number(upgradeDifferenceBefore) + Number(tamdidPriceBefore) + Number(karbaeEzafePriceBefore) + Number(chandSherkatiPriceBefore) + Number(tabdilBeGhoflPriceBefore) + Number(modulesPriceBefore) + Number(bargashtiPriceBefore) + Number(khadamatPriceBefore)) - Number(motevaliPriceBefore));
+        let total = Number((Number(destPriceBefore) + Number(upgradeDifferenceBefore) + Number(tamdidPriceBefore) + Number(karbaeEzafePriceBefore) + Number(chandSherkatiPriceBefore) + Number(tabdilBeGhoflPriceBefore) + Number(modulesPriceBefore) + Number(khadamatPriceBefore)) - (Number(motevaliPriceBefore) + Number(bargashtiPriceBefore)));
         if (forooshJadid) {
             setJameKolBefore(total);
         } else if (!forooshJadid) {
@@ -507,7 +507,7 @@ const EntrySection = () => {
     }
 
     const calculateJameKolTakhfif = () => {
-        let totalAfter = (Number(destAfterTakhfif) + Number(tamdidAfterTakhfif) + Number(upgradeAfterTakhfif) + Number(karbarEzafeAfterTakhfif) + Number(chandSherkatiAfterTakhfif) + Number(tabdilBeGhoflAfterTakhfif) + Number(modulesAfterTakhfif) + Number(bargashtiAfterTakhfif) + Number(khadamatAfterTakhfif)) - Number(motevaliPrice);
+        let totalAfter = (Number(destAfterTakhfif) + Number(tamdidAfterTakhfif) + Number(upgradeAfterTakhfif) + Number(karbarEzafeAfterTakhfif) + Number(chandSherkatiAfterTakhfif) + Number(tabdilBeGhoflAfterTakhfif) + Number(modulesAfterTakhfif) + Number(khadamatAfterTakhfif)) - (Number(motevaliPrice) + Number(bargashtiAfterTakhfif));
         if (forooshJadid) {
             setJameKolAfterTakhfif(totalAfter);
         } else if (!forooshJadid) {
@@ -896,7 +896,7 @@ const EntrySection = () => {
             <ModulesDialog open={modulesOpen} setOpen={setModulesOpen} />
             <BargashtiDialog open={bargashtiOpen} setOpen={setBargashtiOpen} />
             <KhadamatDialog open={khadamatOpen} setOpen={setKhadamatOpen} />
-            <UpdateModal open={updateModal} setOpen={setUpdateModal}/>
+            <UpdateModal open={updateModal} setOpen={setUpdateModal} />
         </Box >
     );
 }

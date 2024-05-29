@@ -1,6 +1,8 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, List, ListItem, ListItemText, Stack, Switch } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, List, ListItem, ListItemText, Stack, Switch, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { GeneralState } from "../context/generalContext";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+
 
 const BargashtiDialog = ({ open, setOpen }) => {
 
@@ -9,7 +11,9 @@ const BargashtiDialog = ({ open, setOpen }) => {
 
     const [selectedBargashti, setSelectedBargashti] = useState([]);
     const [checkedStates, setCheckedStates] = useState(Array(kits.length).fill(false));
-
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredKits, setFilteredKits] = useState([]);
+    const [originalIndices, setOriginalIndices] = useState()
     const { setBargashtiPrice } = GeneralState();
 
     const handleCancel = () => {
@@ -38,34 +42,73 @@ const BargashtiDialog = ({ open, setOpen }) => {
     };
 
     const handleAddKits = () => {
-        const numbersArray = selectedBargashti.map(price => parseFloat(price.replace(/,/g, '')));
+        const numbersArray = selectedBargashti
+            .filter(price => typeof price === 'string')
+            .map(price => parseFloat(price.replace(/,/g, '')));
         const validNumbers = numbersArray.filter(num => !isNaN(num));
         const totalSum = validNumbers.reduce((sum, num) => sum + num, 0);
         setBargashtiPrice(totalSum);
         setOpen(false);
     };
 
+    const handleSearchTermChange = (event) => {
+        // Update the search term state
+        setSearchTerm(event.target.value);
+    };
+
+    useEffect(() => {
+        // Filter the kits and modulesPrices arrays based on the search term
+        const filteredKitsArr = kits.filter((kit) => kit.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        const originalIndicesvalue = filteredKitsArr.map((searchResultsItem) => {
+            return kits.findIndex((kit) => kit === searchResultsItem);
+        }).filter((originalIndex) => originalIndex !== -1);
+
+        setOriginalIndices(originalIndicesvalue)
+
+        // Set the state of the filteredKitsArr and filteredModulesPrices arrays
+        setFilteredKits(filteredKitsArr);
+    }, [searchTerm]);
+
+
+
     return (
         <Box>
             <Dialog sx={{ backgroundColor: 'rgba(252, 243, 224, 0.6)', backdropFilter: 'blur(12px) saturate(180%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
-                <DialogTitle>{"کیت ها و ماژول های برگشتی"}</DialogTitle>
-                <DialogContent dividers>
-                    <List sx={{ width: '100%', maxWidth: 550, maxHeight: 400 }}>
-                        {kits.map((kit, index) =>
-                            <Box key={kit}>
-                                <ListItem >
-                                    <ListItemText sx={{ ml: 5 }} primary={kit} secondary={modulesPrices[index]} />
-                                    <Switch checked={checkedStates[index]} onChange={(event) => handleSwitchChange(index, event)} edge="end" />
-                                </ListItem>
-                                <Divider variant="middle" component="li" />
-                            </Box>
-                        )}
+                <DialogContent sx={{ width: 500, height: 600 }} dividers>
+                    <List sx={{ width: '100%', maxWidth: 500, maxHeight: 400 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 3 }}>
+                            <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                            <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="کیت ها و ماژول های برگشتی" variant="standard" style={{ direction: "rtl" }} />
+                        </Box>
+                        {searchTerm ? (
+                            filteredKits.map((filteredKit, index) => {
+                                const originalIndex = originalIndices[index];
+                                return (
+                                    <Box key={filteredKit}>
+                                        <ListItem >
+                                            <ListItemText sx={{ ml: 10 }} primary={filteredKit} secondary={originalIndex !== -1 ? modulesPrices[originalIndex] : null} />
+                                            <Switch checked={checkedStates[originalIndex]} onChange={(event) => handleSwitchChange(originalIndex, event)} edge="end" />
+                                        </ListItem>
+                                        <Divider variant="middle" component="li" />
+                                    </Box>
+                                )
+                            })) : (
+                            kits.map((kit, index) =>
+                                <Box key={kit}>
+                                    <ListItem >
+                                        <ListItemText sx={{ ml: 10 }} primary={kit} secondary={modulesPrices[index]} />
+                                        <Switch checked={checkedStates[index]} onChange={(event) => handleSwitchChange(index, event)} edge="end" />
+                                    </ListItem>
+                                    <Divider variant="middle" component="li" />
+                                </Box>
+                            ))}
                     </List>
                 </DialogContent>
                 <DialogActions>
                     <Stack direction='row' spacing={1} sx={{ width: '100%', m: '10px 5px' }} justifyContent='space-around'>
-                        <Button color="error" variant="contained" onClick={handleCancel}>انصراف و پاک کردن فرم</Button>
-                        <Button color="success" variant="contained" onClick={handleAddKits}>افزودن کیت برگشتی</Button>
+                        <Button sx={{ width: '45%' }} color="error" variant="outlined" onClick={handleCancel}>انصراف و پاک کردن فرم</Button>
+                        <Button sx={{ width: '45%' }} color="primary" variant="outlined" onClick={handleAddKits}>افزودن کیت و ماژول برگشتی</Button>
                     </Stack>
                 </DialogActions>
             </Dialog>
