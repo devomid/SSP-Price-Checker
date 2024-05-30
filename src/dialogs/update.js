@@ -10,19 +10,26 @@ const UpdateModal = ({open, setOpen}) => {
     const [speed, setSpeed] = useState(0);
 
     ipcRenderer.on('updateMsg', (event, message) => {
-        if (message.type === 'availaible'){
+        if (message.type === 'available'){
             setText('ورژن شما به روز نیست. کمی صبر کنید تا بروزرسانی انجام شود')
         }
     });
     
     ipcRenderer.on('updateMsg', (event, message) => {
-        if (message.type === 'notAvailable'){
+        if (message.type === 'notAvalable'){
             setText('ورژن شما به روز است و احتیاجی به بروزرسانی نیست')
             setTimeout(() => {
                 setOpen(false)
             }, 1500);
         }
     });
+
+    ipcRenderer.on('updateMsg', (event, message) => {
+        if (message.type === 'success') {
+            setText('دانلود ورژن جدید با موفقیت انجام شد')
+        }
+    })
+        
     
     ipcRenderer.on('updateMsg', (event, message) => {
         if (message.type === 'error'){

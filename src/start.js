@@ -58,11 +58,11 @@ autoUpdater.on("checking-for-update", () => {
 })
 
 autoUpdater.on("update-available", () => {
-    mainWindow.webContents.send('updateMsg', {type: 'availaible'})
+    mainWindow.webContents.send('updateMsg', {type: 'available'})
 })
 
 autoUpdater.on('update-not-available', () => {
-    mainWindow.webContents.send('updateMsg', {type: 'notAvailable'})
+    mainWindow.webContents.send('updateMsg', {type: 'notAvalable'})
 })
 
 autoUpdater.on('error', (err) => {
