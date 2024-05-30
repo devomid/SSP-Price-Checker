@@ -75,7 +75,7 @@ const KhadamatDialog = ({ open, setOpen }) => {
                     <List sx={{ width: '100%', maxWidth: 500, maxHeight: 400 }}>
                         <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 3 }}>
                             <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                            <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="کیت ها و ماژول های برگشتی" variant="standard" style={{ direction: "rtl" }} />
+                            <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="خدمات کارشناسی" variant="standard" style={{ direction: "rtl" }} />
                         </Box>
                         {searchTerm ? (
                             filteredKhadamat.map((filteredKit, index) => {
