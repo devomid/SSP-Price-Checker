@@ -70,13 +70,16 @@ const KhadamatDialog = ({ open, setOpen }) => {
 
     return (
         <Box>
+
             <Dialog sx={{ backgroundColor: 'rgba(252, 243, 224, 0.6)', backdropFilter: 'blur(12px) saturate(180%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
+                <DialogContent sx={{ height: 67, width: 500, backgroundColor: 'white' }}>
+                    <Box sx={{ width: '52vh', display: 'flex', alignItems: 'flex-end', position: 'fixed' }}>
+                        <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                        <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="خدمات کارشناسی" variant="standard" style={{ direction: "rtl" }} />
+                    </Box>
+                </DialogContent>
                 <DialogContent sx={{ width: 500, height: 600 }} dividers>
                     <List sx={{ width: '100%', maxWidth: 500, maxHeight: 400 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 3 }}>
-                            <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                            <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="خدمات کارشناسی" variant="standard" style={{ direction: "rtl" }} />
-                        </Box>
                         {searchTerm ? (
                             filteredKhadamat.map((filteredKit, index) => {
                                 const originalIndex = originalIndices[index];

@@ -74,35 +74,42 @@ const BargashtiDialog = ({ open, setOpen }) => {
 
     return (
         <Box>
-            <Dialog sx={{ backgroundColor: 'rgba(252, 243, 224, 0.6)', backdropFilter: 'blur(12px) saturate(180%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
+            <Dialog open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
+                <DialogContent sx={{ height: 67, width: 500, backgroundColor: 'white' }}>
+                    <Box sx={{ width: '52vh', display: 'flex', alignItems: 'flex-end', position: 'fixed' }}>
+                        <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                        <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="کیت ها و ماژول های برگشتی" variant="standard" style={{ direction: "rtl" }} />
+                    </Box>
+                </DialogContent>
+
                 <DialogContent sx={{ width: 500, height: 600 }} dividers>
+
                     <List sx={{ width: '100%', maxWidth: 500, maxHeight: 400 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 3 }}>
-                            <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                            <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="کیت ها و ماژول های برگشتی" variant="standard" style={{ direction: "rtl" }} />
-                        </Box>
-                        {searchTerm ? (
-                            filteredKits.map((filteredKit, index) => {
-                                const originalIndex = originalIndices[index];
-                                return (
-                                    <Box key={filteredKit}>
+                        <Box>
+                            {searchTerm ? (
+                                filteredKits.map((filteredKit, index) => {
+                                    const originalIndex = originalIndices[index];
+                                    return (
+                                        <Box key={filteredKit}>
+                                            <ListItem >
+                                                <ListItemText sx={{ ml: 10 }} primary={filteredKit} secondary={originalIndex !== -1 ? modulesPrices[originalIndex] : null} />
+                                                <Switch checked={checkedStates[originalIndex]} onChange={(event) => handleSwitchChange(originalIndex, event)} edge="end" />
+                                            </ListItem>
+                                            <Divider variant="middle" component="li" />
+                                        </Box>
+                                    )
+                                })) : (
+                                kits.map((kit, index) =>
+                                    <Box key={kit}>
                                         <ListItem >
-                                            <ListItemText sx={{ ml: 10 }} primary={filteredKit} secondary={originalIndex !== -1 ? modulesPrices[originalIndex] : null} />
-                                            <Switch checked={checkedStates[originalIndex]} onChange={(event) => handleSwitchChange(originalIndex, event)} edge="end" />
+                                            <ListItemText sx={{ ml: 10 }} primary={kit} secondary={modulesPrices[index]} />
+                                            <Switch checked={checkedStates[index]} onChange={(event) => handleSwitchChange(index, event)} edge="end" />
                                         </ListItem>
                                         <Divider variant="middle" component="li" />
                                     </Box>
-                                )
-                            })) : (
-                            kits.map((kit, index) =>
-                                <Box key={kit}>
-                                    <ListItem >
-                                        <ListItemText sx={{ ml: 10 }} primary={kit} secondary={modulesPrices[index]} />
-                                        <Switch checked={checkedStates[index]} onChange={(event) => handleSwitchChange(index, event)} edge="end" />
-                                    </ListItem>
-                                    <Divider variant="middle" component="li" />
-                                </Box>
-                            ))}
+                                ))}
+                        </Box>
+
                     </List>
                 </DialogContent>
                 <DialogActions>
