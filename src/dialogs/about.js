@@ -23,7 +23,7 @@ const About = ({ open, setOpen }) => {
                             </Box>
                         </Stack>
                         <Box sx={{ width: '100%', mt: 10, mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography color='primary' variant="caption" textAlign="center" sx={{ whiteSpace: 'pre-line' }} >
+                            <Typography color='info' variant="caption" textAlign="center" sx={{ whiteSpace: 'pre-line' }} >
                                 سراج سبز پارتیکان{'\n'}
                                 SSP Price Calculation Utility{'\n'}
                                 created and developed by: Omid Azad{'\n'}
@@ -35,7 +35,7 @@ const About = ({ open, setOpen }) => {
                 </DialogContent>
                 <DialogActions>
                     <Stack direction='row' spacing={1} sx={{ width: '100%', m: '10px 5px' }} justifyContent='space-around'>
-                        <Button color="primary" variant="contained" onClick={handleClose}>باشه</Button>
+                        <Button sx={{ width: '100%', height: 50 }} color="primary" variant="outlined" onClick={handleClose}>باشه</Button>
                     </Stack>
                 </DialogActions>
             </Dialog>

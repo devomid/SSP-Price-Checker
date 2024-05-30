@@ -92,7 +92,8 @@ const EntrySection = () => {
         khadamatPriceBefore, setKhadamatPriceBefore,
         jameKolBefore, setJameKolBefore,
         originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
-        destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore } = GeneralState();
+        destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
+    } = GeneralState();
 
     const [modulesOpen, setModulesOpen] = useState(false);
     const [bargashtiOpen, setBargashtiOpen] = useState(false);
@@ -622,7 +623,6 @@ const EntrySection = () => {
         calculateTabdilBeGhofl();
         calculateSaleTakhfif();
         calculateUpgradeTakhfif();
-        // calculateJameKolTakhfif()
     };
 
     const reset = () => {

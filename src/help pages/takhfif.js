@@ -6,10 +6,8 @@ const Takhfifat = () => {
     return (
         <Stack spacing={2}>
             <Typography variant='h5' textAlign={"left"}>بخش تخفیف ها</Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Typography sx={{ ml: 3, mt: 15 }} textAlign={"left"}>تخفیف مربوط به هر بخش از نرم افزار را به صورت درصدی در این قسمت وارد کنید تا مقدار تخفیف داده شده از مبلغ فیلد مربوطه کسر گردد</Typography>
-                <img width='550' height='400' src={require('../assets/HelpImages/discount.png')} />
-            </Box>
+            <Typography sx={{ ml: 3, mt: 15 }} textAlign={"left"}>تخفیف مربوط به هر بخش از نرم افزار را به صورت درصدی در این قسمت وارد کنید تا مقدار تخفیف داده شده از مبلغ فیلد مربوطه کسر گردد</Typography>
+            <img width='550' height='400' src={require('../assets/HelpImages/discount.png')} />
         </Stack>
     );
 }

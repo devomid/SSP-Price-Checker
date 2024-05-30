@@ -49,25 +49,25 @@ const HelpDialog = ({ open, setOpen }) => {
     };
 
     return (
-        <Box >
+        <Box  >
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>درباره نرم افزار</DialogTitle>
-                <DialogContent dividers>
+                <DialogContent sx={{ height: 600 }} dividers>
                     {renderHelpPage()}
                 </DialogContent>
                 <DialogActions>
                     <Stack direction='row' spacing={1} sx={{ width: '100%', m: '10px 5px' }} justifyContent='space-around'>
-                        <Button sx={{ width: 100 }} color="primary" variant="contained" onClick={handleClose}>باشه</Button>
+                        <Button sx={{ width: '30%' }} color="warning" variant="outlined" onClick={handleClose}>باشه</Button>
                         {helpPage > 1 ? (
-                            <Button sx={{ width: 100 }} color="primary" variant="contained" onClick={previous}>قبلی</Button>
+                            <Button sx={{ width: '30%' }} color="secondary" variant="outlined" onClick={previous}>قبلی</Button>
                         ) : (
-                            <></>
+                            <Button disabled sx={{ width: '30%' }} color="primary" variant="outlined" onClick={previous}>قبلی</Button>
                         )}
 
                         {helpPage < 9 ? (
-                            <Button sx={{ width: 100 }} color="primary" variant="contained" onClick={next}>بعدی</Button>
+                            <Button sx={{ width: '30%' }} color="primary" variant="outlined" onClick={next}>بعدی</Button>
                         ) : (
-                            <></>
+                            <Button disabled sx={{ width: '30%' }} color="primary" variant="outlined" onClick={next}>بعدی</Button>
                         )}
 
                     </Stack>
