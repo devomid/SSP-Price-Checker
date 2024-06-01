@@ -108,9 +108,10 @@
       "uninstallDisplayName": "SSP Price Checker",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "oneClick": true,
+      "oneClick": false,
       "installerIcon": "./src/assets/icon/icon.ico",
-      "uninstallerIcon": "./src/assets/icon/icon.ico"
+      "uninstallerIcon": "./src/assets/icon/icon.ico",
+      "allowToChangeInstallationDirectory": true
     }
   }
 }
