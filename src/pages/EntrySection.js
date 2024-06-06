@@ -743,77 +743,79 @@ const EntrySection = () => {
 
 
     return (
-        <Box sx={{ maxHeight: '97%', width: '50%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
+        <Box sx={{ maxHeight: '97%', width: '54%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
             <Stack spacing={1}>
 
-                <Stack direction="column" spacing={1}>
+                <Stack direction="row-reverse">
 
-                    <Stack direction="column" spacing={2}>
-                        <Divider>
-                            <Chip label="آپگرید و فروش" size="small" />
-                        </Divider>
+                    <Stack direction="column" spacing={0}>
 
-                        <Stack spacing={1} direction='row'>
-                            <ToggleButton sx={{
-                                height: '2.5rem', width: '10rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' }
-                            }} color="secondary" value="check" selected={originChandSherkati} size="small" onChange={() => { setOriginChandSherkati(!originChandSherkati); }}><Typography variant="caption">چند شرکتی</Typography>
-                            </ToggleButton>
+                            {/* <Divider>
+                                <Chip label="آپگرید و فروش" size="small" />
+                            </Divider> */}
 
-                            <FormControl error={originErr} >
+                                {/* <ToggleButton sx={{
+                                    height: '2.5rem', width: '10rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' }
+                                }} color="secondary" value="check" selected={originChandSherkati} size="small" onChange={() => { setOriginChandSherkati(!originChandSherkati); }}><Typography variant="caption">چند شرکتی</Typography>
+                                </ToggleButton> */}
+
+
+                                <FormControl error={originErr} >
+                                    <TextField onKeyDown={(event) => {
+                                        if (event.key === 'Enter') {
+                                            calculate()
+                                        }
+                                    }} error={originErr} defaultValue={originCode} onChange={(e) => {
+                                        const updatedValue = e.target.value;
+                                        setOriginCode(updatedValue)
+                                    }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
+                                    <FormHelperText>
+                                        <Typography variant="caption">
+                                            {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
+                                        </Typography>
+                                    </FormHelperText>
+                                </FormControl>
+
+
+                                {/* <ToggleButton sx={{ ml: 1, height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={destChandSherkati} size="small" onChange={() => { setDestChandSherkati(!destChandSherkati); }}>
+                                    <Typography variant="caption">چند شرکتی</Typography>
+                                </ToggleButton>
+
+                                <ToggleButton sx={{ height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={forooshJadid} size="small" onChange={() => { setForooshJadid(!forooshJadid); }}>
+                                    <Typography variant="caption">فروش جدید</Typography>
+                                </ToggleButton> */}
+                            <FormControl error={destCodeErr}>
                                 <TextField onKeyDown={(event) => {
                                     if (event.key === 'Enter') {
                                         calculate()
                                     }
-                                }} error={originErr} defaultValue={originCode} onChange={(e) => {
+                                }} error={destCodeErr} onChange={(e) => {
                                     const updatedValue = e.target.value;
-                                    setOriginCode(updatedValue)
-                                }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)', width: '98%', mr: 2 }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
+                                    setDestCode(updatedValue);
+                                }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="کد مقصد" variant="outlined" size="small" />
                                 <FormHelperText>
                                     <Typography variant="caption">
-                                        {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
+                                        {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
                                     </Typography>
                                 </FormHelperText>
                             </FormControl>
-                        </Stack>
+
                     </Stack>
 
-                    <Stack spacing={1} direction='row'>
-
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <ToggleButton sx={{ ml: 1, height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={destChandSherkati} size="small" onChange={() => { setDestChandSherkati(!destChandSherkati); }}>
-                                <Typography variant="caption">چند شرکتی</Typography>
-                            </ToggleButton>
-
-                            <ToggleButton sx={{ height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={forooshJadid} size="small" onChange={() => { setForooshJadid(!forooshJadid); }}>
-                                <Typography variant="caption">فروش جدید</Typography>
-                            </ToggleButton>
-                        </Box>
-
-                        <FormControl error={destCodeErr}>
-                            <TextField onKeyDown={(event) => {
-                                if (event.key === 'Enter') {
-                                    calculate()
-                                }
-                            }} error={destCodeErr} onChange={(e) => {
-                                const updatedValue = e.target.value;
-                                setDestCode(updatedValue);
-                            }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)', width: '98%', mr: 2 }} type="text" label="کد مقصد" variant="outlined" size="small" />
-                            <FormHelperText>
-                                <Typography variant="caption">
-                                    {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
-                                </Typography>
-                            </FormHelperText>
-                        </FormControl>
+                    <Stack direction="column" spacing={3}>
+                        <FormControlLabel sx={{width:'9rem'}} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
+                        <FormControlLabel sx={{width:'9rem'}} control={<Switch onChange={(e) => setDestChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
                     </Stack>
 
                 </Stack>
 
+
                 <Stack direction="column" spacing={1}>
 
                     <Stack direction="column" spacing={3}>
-                        <Divider sx={{ mb: 2 }}>
+                        {/* <Divider sx={{ mb: 2 }}>
                             <Chip label="تمدید پشتیبانی" size="small" />
-                        </Divider>
+                        </Divider> */}
 
                         <Box>
 
@@ -853,9 +855,9 @@ const EntrySection = () => {
                 <Stack direction='column' spacing={1}>
 
                     <Stack direction='column' spacing={2}>
-                        <Divider sx={{ mb: 2 }}>
+                        {/* <Divider sx={{ mb: 2 }}>
                             <Chip label="سایر موارد" size="small" />
-                        </Divider>
+                        </Divider> */}
 
                         <Box>
                             <FormControl error={karbarEzafeErr} fullWidth>
@@ -875,7 +877,7 @@ const EntrySection = () => {
 
                     <FormGroup dir="rtl">
                         <Stack spacing={0.5}>
-                            <FormControlLabel control={<Switch onChange={(e) => setChandSherkati(e.target.checked)} />} label="چند شرکتی" />
+                            {/* <FormControlLabel control={<Switch onChange={(e) => setChandSherkati(e.target.checked)} />} label="چند شرکتی" /> */}
                             <FormControlLabel control={<Switch onChange={(e) => setTabdilBeGhofl(e.target.checked)} />} label="تبدیل به کارت" />
                         </Stack>
                     </FormGroup>
@@ -883,9 +885,9 @@ const EntrySection = () => {
                 </Stack>
             </Stack>
 
-            <Divider sx={{ mb: 2, mt: 1 }}>
+            {/* <Divider sx={{ mb: 2, mt: 1 }}>
                 <Chip label="ماژول ها و خدمات" size="small" />
-            </Divider>
+            </Divider> */}
 
             <Stack spacing={2}>
                 <Button onClick={openModulesDialog} variant="contained" endIcon={<ExtensionOutlinedIcon />}><Typography sx={{ ml: 5.5 }}>افزودن کیت و ماژول</Typography></Button>

@@ -32,19 +32,19 @@ function App() {
         <div className='App' >
           <Navbar />
 
-          <Box sx={{ display: 'flex', flexDirection: 'row' }} >
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Stack direction="row" >
+            <Stack direction="column">
               <ResultsSection />
               <ButtonsSection />
-            </Box>
+            </Stack>
 
 
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Stack direction="row">
               <DiscountSection />
               <EntrySection />
-            </Box>
+            </Stack>
 
-          </Box>
+          </Stack>
 
         </div>
       </ThemeProvider>
