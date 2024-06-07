@@ -1,11 +1,5 @@
 import { Box, Button, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormHelperText, Stack, Switch, TextField, ToggleButton, Tooltip, Typography } from "@mui/material";
-import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
-import ExtensionOffOutlinedIcon from '@mui/icons-material/ExtensionOffOutlined';
-import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import React, { useEffect, useState } from "react";
-import ModulesDialog from '../dialogs/modules';
-import BargashtiDialog from "../dialogs/bargashti";
-import KhadamatDialog from "../dialogs/khadamat";
 import { GeneralState } from '../context/generalContext';
 import 'jalaali-react-date-picker/lib/styles/index.css';
 import moment from 'moment-jalaali';
@@ -95,9 +89,6 @@ const EntrySection = () => {
         destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
     } = GeneralState();
 
-    const [modulesOpen, setModulesOpen] = useState(false);
-    const [bargashtiOpen, setBargashtiOpen] = useState(false);
-    const [khadamatOpen, setKhadamatOpen] = useState(false);
     const [originErr, setOriginErr] = useState(false);
     const [originCodeName, setOriginCodeName] = useState('');
     const [destCodeErr, setDestCodeErr] = useState(false);
@@ -128,17 +119,7 @@ const EntrySection = () => {
         };
     });
 
-    const openModulesDialog = () => {
-        setModulesOpen(true);
-    };
 
-    const openBargashtiDialog = () => {
-        setBargashtiOpen(true);
-    };
-
-    const openKhadamatDialog = () => {
-        setKhadamatOpen(true);
-    };
 
     const calculateUpgrade = async () => {
         let upgradeDiffValue;
@@ -650,9 +631,9 @@ const EntrySection = () => {
         setBargashtiAfterTakhfifErr(false)
         setKhadamatAfterTakhfifErr(false)
         setCalc(false)
-        setModulesOpen(false)
-        setBargashtiOpen(false)
-        setKhadamatOpen(false)
+        // setModulesOpen(false)
+        // setBargashtiOpen(false)
+        // setKhadamatOpen(false)
         setOriginErr(false)
         setDestCodeErr(false)
         setKarbarEzafeErr(false)
@@ -743,68 +724,68 @@ const EntrySection = () => {
 
 
     return (
-        <Box sx={{ maxHeight: '97%', width: '54%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
+        <Box sx={{ width: '80%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
             <Stack spacing={1}>
 
                 <Stack direction="row-reverse">
 
                     <Stack direction="column" spacing={0}>
 
-                            {/* <Divider>
+                        {/* <Divider>
                                 <Chip label="آپگرید و فروش" size="small" />
                             </Divider> */}
 
-                                {/* <ToggleButton sx={{
+                        {/* <ToggleButton sx={{
                                     height: '2.5rem', width: '10rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' }
                                 }} color="secondary" value="check" selected={originChandSherkati} size="small" onChange={() => { setOriginChandSherkati(!originChandSherkati); }}><Typography variant="caption">چند شرکتی</Typography>
                                 </ToggleButton> */}
 
 
-                                <FormControl error={originErr} >
-                                    <TextField onKeyDown={(event) => {
-                                        if (event.key === 'Enter') {
-                                            calculate()
-                                        }
-                                    }} error={originErr} defaultValue={originCode} onChange={(e) => {
-                                        const updatedValue = e.target.value;
-                                        setOriginCode(updatedValue)
-                                    }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
-                                    <FormHelperText>
-                                        <Typography variant="caption">
-                                            {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
-                                        </Typography>
-                                    </FormHelperText>
-                                </FormControl>
+                        <FormControl error={originErr} >
+                            <TextField onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    calculate()
+                                }
+                            }} error={originErr} defaultValue={originCode} onChange={(e) => {
+                                const updatedValue = e.target.value;
+                                setOriginCode(updatedValue)
+                            }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
+                            <FormHelperText>
+                                <Typography variant="caption">
+                                    {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
+                                </Typography>
+                            </FormHelperText>
+                        </FormControl>
 
 
-                                {/* <ToggleButton sx={{ ml: 1, height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={destChandSherkati} size="small" onChange={() => { setDestChandSherkati(!destChandSherkati); }}>
+                        {/* <ToggleButton sx={{ ml: 1, height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={destChandSherkati} size="small" onChange={() => { setDestChandSherkati(!destChandSherkati); }}>
                                     <Typography variant="caption">چند شرکتی</Typography>
                                 </ToggleButton>
 
                                 <ToggleButton sx={{ height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={forooshJadid} size="small" onChange={() => { setForooshJadid(!forooshJadid); }}>
                                     <Typography variant="caption">فروش جدید</Typography>
                                 </ToggleButton> */}
-                            <FormControl error={destCodeErr}>
-                                <TextField onKeyDown={(event) => {
-                                    if (event.key === 'Enter') {
-                                        calculate()
-                                    }
-                                }} error={destCodeErr} onChange={(e) => {
-                                    const updatedValue = e.target.value;
-                                    setDestCode(updatedValue);
-                                }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="کد مقصد" variant="outlined" size="small" />
-                                <FormHelperText>
-                                    <Typography variant="caption">
-                                        {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
-                                    </Typography>
-                                </FormHelperText>
-                            </FormControl>
+                        <FormControl error={destCodeErr}>
+                            <TextField onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    calculate()
+                                }
+                            }} error={destCodeErr} onChange={(e) => {
+                                const updatedValue = e.target.value;
+                                setDestCode(updatedValue);
+                            }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="کد مقصد" variant="outlined" size="small" />
+                            <FormHelperText>
+                                <Typography variant="caption">
+                                    {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
+                                </Typography>
+                            </FormHelperText>
+                        </FormControl>
 
                     </Stack>
 
                     <Stack direction="column" spacing={3}>
-                        <FormControlLabel sx={{width:'9rem'}} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
-                        <FormControlLabel sx={{width:'9rem'}} control={<Switch onChange={(e) => setDestChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
+                        <FormControlLabel sx={{ width: '9rem' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
+                        <FormControlLabel sx={{ width: '9rem' }} control={<Switch onChange={(e) => setDestChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
                     </Stack>
 
                 </Stack>
@@ -889,16 +870,8 @@ const EntrySection = () => {
                 <Chip label="ماژول ها و خدمات" size="small" />
             </Divider> */}
 
-            <Stack spacing={2}>
-                <Button onClick={openModulesDialog} variant="contained" endIcon={<ExtensionOutlinedIcon />}><Typography sx={{ ml: 5.5 }}>افزودن کیت و ماژول</Typography></Button>
-                <Button onClick={openBargashtiDialog} variant="contained" endIcon={<ExtensionOffOutlinedIcon />}><Typography sx={{ ml: 5.5 }}>کیت و ماژول برگشتی</Typography></Button>
-                <Button onClick={openKhadamatDialog} variant="contained" endIcon={<ManageAccountsOutlinedIcon />}><Typography sx={{ ml: 3 }}>افزودن خدمات کارشناسی</Typography></Button>
-            </Stack>
-
-            <ModulesDialog open={modulesOpen} setOpen={setModulesOpen} />
-            <BargashtiDialog open={bargashtiOpen} setOpen={setBargashtiOpen} />
-            <KhadamatDialog open={khadamatOpen} setOpen={setKhadamatOpen} />
             <UpdateModal open={updateModal} setOpen={setUpdateModal} />
+
         </Box >
     );
 }

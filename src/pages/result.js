@@ -44,7 +44,7 @@ const ResultsSection = ({ open, setOpen }) => {
     ];
 
     return (
-        <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', mt: '1rem', mb: '0.5rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
+        <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
 
             <TableContainer dir="rtl" component={Paper}>
                 <Table sx={{ width: 550 }} size="small" aria-label="simple table">

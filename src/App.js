@@ -12,6 +12,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import MenuDrawer from './dialogs/MenuDrawer';
 import { useState } from 'react';
 import ResultsSection from './pages/result';
+import ModulesButtons from './pages/ModulesButtons';
 
 const cacheRtl = createCache({
   key: 'muirtl',
@@ -32,16 +33,26 @@ function App() {
         <div className='App' >
           <Navbar />
 
-          <Stack direction="row" >
+          <Stack direction="row">
+
             <Stack direction="column">
               <ResultsSection />
               <ButtonsSection />
             </Stack>
 
+            {/* <Stack direction="column">
+              <ModulesButtons />
+            </Stack> */}
+
 
             <Stack direction="row">
               <DiscountSection />
-              <EntrySection />
+
+              <Stack direction="column">
+                <EntrySection />
+                <ModulesButtons />
+              </Stack>
+
             </Stack>
 
           </Stack>

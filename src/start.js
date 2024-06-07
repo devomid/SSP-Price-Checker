@@ -1,7 +1,7 @@
-const { app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
 const { ipcMain } = require('electron')
 const { protocol } = require('electron');
-const {autoUpdater} = require('electron-updater');
+const { autoUpdater } = require('electron-updater');
 const log = require('electron-log');
 
 log.log("app ver: " + app.getVersion())
@@ -16,8 +16,8 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         // width: 1545,
         // height: 896,
-        width: 1035,
-        height: 900,
+        width: 1265,
+        height: 710,
         webPreferences: {
             sandbox: false,
             nodeIntegration: true,
@@ -58,11 +58,11 @@ autoUpdater.on("checking-for-update", () => {
 })
 
 autoUpdater.on("update-available", () => {
-    mainWindow.webContents.send('updateMsg', {type: 'available'})
+    mainWindow.webContents.send('updateMsg', { type: 'available' })
 })
 
 autoUpdater.on('update-not-available', () => {
-    mainWindow.webContents.send('updateMsg', {type: 'notAvalable'})
+    mainWindow.webContents.send('updateMsg', { type: 'notAvalable' })
 })
 
 autoUpdater.on('error', (err) => {
@@ -75,11 +75,11 @@ autoUpdater.on("download-progress", (progressObj) => {
 });
 
 autoUpdater.on('update-cancelled', () => {
-    mainWindow.webContents.send('updateMsg', {type: 'cancelled'})
+    mainWindow.webContents.send('updateMsg', { type: 'cancelled' })
 })
 
 autoUpdater.on("update-downloaded", () => {
-    mainWindow.webContents.send('updateMsg', {type: 'success'})
+    mainWindow.webContents.send('updateMsg', { type: 'success' })
     autoUpdater.quitAndInstall()
 })
 
