@@ -14,7 +14,7 @@ const Navbar = () => {
     };
 
     const printIt = () => {
-        setPrintRes(!printRes)
+        setPrintRes(true)
     }
 
     return (

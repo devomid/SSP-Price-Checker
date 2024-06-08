@@ -119,8 +119,6 @@ const EntrySection = () => {
         };
     });
 
-
-
     const calculateUpgrade = async () => {
         let upgradeDiffValue;
 
@@ -225,13 +223,13 @@ const EntrySection = () => {
         const differdDate = moment(tamdidDate, 'jYYYY/jMM/jDD');
         const daysDifference = currentDate.diff(differdDate, 'days');
 
-        if (tamdidDate !== '' && appCodes.hasOwnProperty(destCode)) {
+        if (tamdidDate !== '' && appCodes.hasOwnProperty(originCode)) {
 
-            const tamdidAdi = Number(tamdidPrices[destCode]);
-            const tashvighi = (Number(tamdidPrices[destCode])) - (((Number(tamdidPrices[destCode])) * 20) / 100);
+            const tamdidAdi = Number(tamdidPrices[originCode]);
+            const tashvighi = (Number(tamdidPrices[originCode])) - (((Number(tamdidPrices[originCode])) * 20) / 100);
             setTashvighiPrice(tashvighi);
 
-            if (networkCodes.includes(destCode) && daysDifference > 365) {
+            if (networkCodes.includes(originCode) && daysDifference > 365) {
 
                 setTamdidPrice(tamdidAdi);
                 setTamdidErr(true);
@@ -313,9 +311,9 @@ const EntrySection = () => {
     };
 
     const claculateKarbarEzafe = () => {
-        if (destCode) {
+        if (originCode) {
             if (tamdidPrice) {
-                if (karbarEzafe == 0 || appCodes.hasOwnProperty(destCode)) {
+                if (karbarEzafe == 0 || networkCodes.includes(originCode)) {
                     const karbarEzafeValue = (Number(tamdidPrice) / 10) * (Number(karbarEzafe))
                     setKarbarEzafePrice(karbarEzafeValue)
                 } else {
@@ -324,33 +322,27 @@ const EntrySection = () => {
                 }
 
             } else {
-                if (karbarEzafe == 0 || appCodes.hasOwnProperty(destCode)) {
-
-                    if (networkCodes.includes(destCode) || karbarEzafe == 0) {
-                        const karbarEzafeValue = Number(((appPrices[destCode]) / 10) * karbarEzafe)
-                        setKarbarEzafePrice(karbarEzafeValue)
-                    } else {
-                        setKarbarEzafeErr(true);
-                        setKarbarEzafeErrTxt('کد غیر شبکه')
-                        setKarbarEzafePrice(0)
-                    }
+                
+                if (networkCodes.includes(originCode) || karbarEzafe == 0) {
+                    const karbarEzafeValue = Number(((appPrices[originCode]) / 10) * karbarEzafe)
+                    setKarbarEzafePrice(karbarEzafeValue)
                 } else {
                     setKarbarEzafeErr(true);
-                    setKarbarEzafeErrTxt('کد نامعتبر')
+                    setKarbarEzafeErrTxt('کد غیر شبکه')
+                    setKarbarEzafePrice(0)
                 }
             }
-
         }
     };
 
     const calculateChandSherkati = () => {
-        if (destCode && chandSherkati) {
-            setChandSherkatiPrice(Number(appPrices[destCode]) / 2);
+        if (originCode && chandSherkati) {
+            setChandSherkatiPrice(Number(appPrices[originCode]) / 2);
         } else setChandSherkatiPrice(0)
     };
 
     const calculateTabdilBeGhofl = () => {
-        if (destCode && tabdilBeGhofl) {
+        if (originCode && tabdilBeGhofl) {
             setTabdilBeGhoflPrice(6500000)
         } else setTabdilBeGhoflPrice(0)
     };
@@ -364,8 +356,8 @@ const EntrySection = () => {
     };
 
     const calculateSaleTakhfif = () => {
-        if (saleTakhfif && destCode && !upgradeDifference) {
-            const saleAfter = Number(destPrice) - ((Number(destPrice) * Number(saleTakhfif)) / 100)
+        if (saleTakhfif && originCode && !upgradeDifference) {
+            const saleAfter = Number(originPrice) - ((Number(originPrice) * Number(saleTakhfif)) / 100)
             setDestAfterTakhfif(saleAfter)
         } else setDestAfterTakhfif(0)
     };
@@ -381,10 +373,10 @@ const EntrySection = () => {
     };
 
     const calculateTamdidTakhfif = () => {
-        if (tamdidTakhfif && destCode && tamdidDate) {
+        if (tamdidTakhfif && originCode && tamdidDate) {
             const tamdidAfter = Number(tamdidPrice) - ((Number(tamdidPrice) * Number(tamdidTakhfif)) / 100)
             setTamdidAfterTakhfif(tamdidAfter)
-        } else if (tamdidTakhfif && !destCode && !tamdidDate) {
+        } else if (tamdidTakhfif && !originCode && !tamdidDate) {
             setTamdidAfterTakhfifErr(true)
             setTamdidAfterTakhfif(0)
         } else setTamdidAfterTakhfif(0)
@@ -740,11 +732,13 @@ const EntrySection = () => {
                                 const updatedValue = e.target.value;
                                 setOriginCode(updatedValue)
                             }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
+                            <Box sx={{width:'100%', mb:1}}>
                             <FormHelperText>
-                                <Typography variant="caption">
+                                <Typography color="royalblue" noWrap variant="caption">
                                     {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
                                 </Typography>
                             </FormHelperText>
+                            </Box>
                         </FormControl>
 
                         <FormControl error={destCodeErr}>
@@ -756,16 +750,18 @@ const EntrySection = () => {
                                 const updatedValue = e.target.value;
                                 setDestCode(updatedValue);
                             }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="کد مقصد" variant="outlined" size="small" />
+                            <Box sx={{width:'100%', mb:1}}>
                             <FormHelperText>
-                                <Typography variant="caption">
+                                <Typography noWrap color="royalblue" variant="caption">
                                     {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
                                 </Typography>
                             </FormHelperText>
+                            </Box>
                         </FormControl>
 
                     </Stack>
 
-                    <Stack direction="column" spacing={3}>
+                    <Stack direction="column" spacing={4}>
                         <FormControlLabel sx={{ width: '9rem' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
                         <FormControlLabel sx={{ width: '9rem' }} control={<Switch onChange={(e) => setDestChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
                     </Stack>

@@ -24,6 +24,7 @@ const ResultsSection = ({ open, setOpen }) => {
 
         const printResults = () => {
             window.print()
+            setPrintRes(false)
         }
 
     function createData(name, beforeArzesh, afterArzesh, afterTakhfif) {
@@ -31,7 +32,9 @@ const ResultsSection = ({ open, setOpen }) => {
     };
 
     useEffect(() => {
-        printResults()
+        if (printRes) {
+            printResults()
+        }
     }, [printRes])
 
     const rows = [
