@@ -1,10 +1,10 @@
-import { Box, Button, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormHelperText, Stack, Switch, TextField, ToggleButton, Tooltip, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { GeneralState } from '../context/generalContext';
+import { Box, FormControl, FormControlLabel, FormGroup, FormHelperText, Stack, Switch, TextField, Tooltip, Typography } from "@mui/material";
 import 'jalaali-react-date-picker/lib/styles/index.css';
+import 'moment-jalaali';
 import moment from 'moment-jalaali';
 import 'moment/locale/fa';
-import 'moment-jalaali';
+import React, { useEffect, useState } from "react";
+import { GeneralState } from '../context/generalContext';
 import UpdateModal from "../dialogs/update";
 const { ipcRenderer } = window.require('electron');
 

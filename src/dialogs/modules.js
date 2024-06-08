@@ -1,7 +1,7 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, List, ListItem, ListItemText, Stack, Switch, TextField } from "@mui/material";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Box, Button, Dialog, DialogActions, DialogContent, Divider, List, ListItem, ListItemText, Stack, Switch, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { GeneralState } from "../context/generalContext";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
 const ModulesDialog = ({ open, setOpen }) => {

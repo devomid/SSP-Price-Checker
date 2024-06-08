@@ -1,11 +1,11 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 import ExtensionOffOutlinedIcon from '@mui/icons-material/ExtensionOffOutlined';
+import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import ModulesDialog from '../dialogs/modules';
 import BargashtiDialog from "../dialogs/bargashti";
 import KhadamatDialog from "../dialogs/khadamat";
+import ModulesDialog from '../dialogs/modules';
 
 
 

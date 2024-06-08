@@ -1,6 +1,6 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, List, ListItem, ListItemText, ListSubheader, Paper, Slide, Stack, Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { GeneralState } from '../context/generalContext'
+import { GeneralState } from '../context/generalContext';
 
 
 const ResultsSection = ({ open, setOpen }) => {

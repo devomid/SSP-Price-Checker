@@ -1,4 +1,4 @@
-import { Box, Chip, Divider, FormControl, Stack, TextField } from "@mui/material";
+import { Box, FormControl, Stack, TextField } from "@mui/material";
 import { GeneralState } from "../context/generalContext";
 
 const DiscountSection = () => {

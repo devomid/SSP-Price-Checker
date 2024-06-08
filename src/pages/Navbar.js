@@ -1,9 +1,9 @@
-import { AppBar, Box, Button, IconButton, Stack, Toolbar, Tooltip, Typography } from "@mui/material";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PrintOutlinedIcon from '@mui/icons-material/PrintOutlined';
-import MenuDrawer from "../dialogs/MenuDrawer";
+import { AppBar, Box, IconButton, Toolbar, Tooltip } from "@mui/material";
 import { useState } from "react";
 import { GeneralState } from "../context/generalContext";
+import MenuDrawer from "../dialogs/MenuDrawer";
 
 const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);

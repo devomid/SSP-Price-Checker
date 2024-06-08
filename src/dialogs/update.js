@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Dialog, DialogContent, DialogTitle, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 const { ipcRenderer } = window.require('electron');
 

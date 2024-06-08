@@ -1,14 +1,14 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
 import { useState } from 'react';
-import SaleAndUpgrade from '../help pages/saleAndUpgrade';
-import Tamdid from '../help pages/tamdid';
-import UpgradeChandSherkati from '../help pages/upgradeChandShrekati';
-import Sayer from '../help pages/sayer';
 import FroshJadid from '../help pages/frooshJadid';
 import ModulesKhadamat from '../help pages/modules';
-import Takhfifat from '../help pages/takhfif';
 import Example from '../help pages/modulesExample';
 import Results from '../help pages/results';
+import SaleAndUpgrade from '../help pages/saleAndUpgrade';
+import Sayer from '../help pages/sayer';
+import Takhfifat from '../help pages/takhfif';
+import Tamdid from '../help pages/tamdid';
+import UpgradeChandSherkati from '../help pages/upgradeChandShrekati';
 
 const HelpDialog = ({ open, setOpen }) => {
     const [helpPage, setHelpPage] = useState(1);
