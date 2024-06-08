@@ -20,17 +20,17 @@ const ButtonsSection = () => {
 
     return (
 
-        <Box sx={{ width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', borderRadius: 5, boxShadow: 3, p: 2, ml: 2, display: 'flex', flexDirection: 'row' }}>
+        <Box sx={{ width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', borderRadius: 5, boxShadow: 3, p: 1.5, ml: 2, display: 'flex', flexDirection: 'row' }}>
 
             <Button color="info" sx={{ width: '50%' }} variant="outlined" endIcon={<CalculateOutlinedIcon sx={{ width: 35, height: 35 }} />} onClick={handleChange} >
-                <Typography variant="h5" sx={{ ml: 4 }}>
+                <Typography variant="h6" sx={{ ml: 4 }}>
                     محاسبه
                 </Typography>
             </Button>
             <Button onClick={() => {
                 { ipcRenderer.send('reset', []) }
             }} color="warning" sx={{ mr: 2, width: '50%' }} variant="outlined" endIcon={<RestartAltOutlinedIcon sx={{ width: 35, height: 35 }} />}>
-                <Typography variant="h5" sx={{ ml: 4 }}>
+                <Typography variant="h6" sx={{ ml: 4 }}>
                     پاک کردن فرم
                 </Typography>
             </Button>
