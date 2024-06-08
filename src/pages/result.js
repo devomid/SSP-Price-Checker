@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, List, ListItem, ListItemText, ListSubheader, Paper, Slide, Stack, Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { GeneralState } from '../context/generalContext'
 
 
@@ -19,11 +19,20 @@ const ResultsSection = ({ open, setOpen }) => {
         khadamatPriceBefore, setKhadamatPriceBefore,
         jameKolBefore, setJameKolBefore,
         originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
-        destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore } = GeneralState();
+        destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
+        printRes, setPrintRes } = GeneralState();
+
+        const printResults = () => {
+            window.print()
+        }
 
     function createData(name, beforeArzesh, afterArzesh, afterTakhfif) {
         return { name, beforeArzesh, afterArzesh, afterTakhfif };
     };
+
+    useEffect(() => {
+        printResults()
+    }, [printRes])
 
     const rows = [
         createData('قیمت کد مبدا', Number(originPriceBefore).toLocaleString(), Number(originPrice).toLocaleString(), '-'),

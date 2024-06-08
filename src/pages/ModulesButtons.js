@@ -27,7 +27,7 @@ const ModulesButtons = () => {
     };
 
     return (
-        <Box sx={{ width:'80%', padding:1, backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', borderRadius: 5, boxShadow: 3 }}>
+        <Box sx={{ width:'68%', padding:1.5, backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', borderRadius: 5, boxShadow: 3, mt:1 }}>
             <Stack spacing={2}>
                 <Button onClick={openModulesDialog} variant="contained" endIcon={<ExtensionOutlinedIcon />}><Typography sx={{ ml: 5.5 }}>افزودن کیت و ماژول</Typography></Button>
                 <Button onClick={openBargashtiDialog} variant="contained" endIcon={<ExtensionOffOutlinedIcon />}><Typography sx={{ ml: 5.5 }}>کیت و ماژول برگشتی</Typography></Button>

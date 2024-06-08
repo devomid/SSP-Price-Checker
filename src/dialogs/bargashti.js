@@ -75,7 +75,7 @@ const BargashtiDialog = ({ open, setOpen }) => {
     return (
         <Box>
             <Dialog open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
-                <DialogContent sx={{ height: 67, width: 500, backgroundColor: 'white' }}>
+                <DialogContent sx={{ height: 78, width: 500, backgroundColor: 'white' }}>
                     <Box sx={{ width: '52vh', display: 'flex', alignItems: 'flex-end', position: 'fixed' }}>
                         <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                         <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="کیت ها و ماژول های برگشتی" variant="standard" style={{ direction: "rtl" }} />

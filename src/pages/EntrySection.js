@@ -724,22 +724,12 @@ const EntrySection = () => {
 
 
     return (
-        <Box sx={{ width: '80%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
+        <Box sx={{ width: '68%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
             <Stack spacing={1}>
 
                 <Stack direction="row-reverse">
 
                     <Stack direction="column" spacing={0}>
-
-                        {/* <Divider>
-                                <Chip label="آپگرید و فروش" size="small" />
-                            </Divider> */}
-
-                        {/* <ToggleButton sx={{
-                                    height: '2.5rem', width: '10rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' }
-                                }} color="secondary" value="check" selected={originChandSherkati} size="small" onChange={() => { setOriginChandSherkati(!originChandSherkati); }}><Typography variant="caption">چند شرکتی</Typography>
-                                </ToggleButton> */}
-
 
                         <FormControl error={originErr} >
                             <TextField onKeyDown={(event) => {
@@ -757,14 +747,6 @@ const EntrySection = () => {
                             </FormHelperText>
                         </FormControl>
 
-
-                        {/* <ToggleButton sx={{ ml: 1, height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={destChandSherkati} size="small" onChange={() => { setDestChandSherkati(!destChandSherkati); }}>
-                                    <Typography variant="caption">چند شرکتی</Typography>
-                                </ToggleButton>
-
-                                <ToggleButton sx={{ height: '2.5rem', width: '3rem', '&.Mui-selected': { backgroundColor: '#2e651f', color: '#ffffff' } }} color="secondary" value="check" selected={forooshJadid} size="small" onChange={() => { setForooshJadid(!forooshJadid); }}>
-                                    <Typography variant="caption">فروش جدید</Typography>
-                                </ToggleButton> */}
                         <FormControl error={destCodeErr}>
                             <TextField onKeyDown={(event) => {
                                 if (event.key === 'Enter') {
@@ -794,9 +776,6 @@ const EntrySection = () => {
                 <Stack direction="column" spacing={1}>
 
                     <Stack direction="column" spacing={3}>
-                        {/* <Divider sx={{ mb: 2 }}>
-                            <Chip label="تمدید پشتیبانی" size="small" />
-                        </Divider> */}
 
                         <Box>
 
@@ -859,7 +838,7 @@ const EntrySection = () => {
                     <FormGroup dir="rtl">
                         <Stack spacing={0.5}>
                             {/* <FormControlLabel control={<Switch onChange={(e) => setChandSherkati(e.target.checked)} />} label="چند شرکتی" /> */}
-                            <FormControlLabel control={<Switch onChange={(e) => setTabdilBeGhofl(e.target.checked)} />} label="تبدیل به کارت" />
+                            <FormControlLabel control={<Switch onChange={(e) => setTabdilBeGhofl(e.target.checked)} />} label="تبدیل قفل به کارت" />
                         </Stack>
                     </FormGroup>
 

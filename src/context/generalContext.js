@@ -84,7 +84,7 @@ const GeneralProvider = ({ children }) => {
     const [calc, setCalc] = useState(false);
     const [resetState, setResetState] = useState(false);
 
-
+    const [printRes, setPrintRes] = useState(false);
 
     return (
         <GeneralContext.Provider value={{
@@ -160,7 +160,8 @@ const GeneralProvider = ({ children }) => {
             khadamatPriceBefore, setKhadamatPriceBefore,
             jameKolBefore, setJameKolBefore,
             originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
-            destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore
+            destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
+            printRes, setPrintRes
         }}>
             {children}
         </GeneralContext.Provider>
