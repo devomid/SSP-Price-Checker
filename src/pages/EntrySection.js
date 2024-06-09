@@ -6,6 +6,7 @@ import 'moment/locale/fa';
 import React, { useEffect, useState } from "react";
 import { GeneralState } from '../context/generalContext';
 import UpdateModal from "../dialogs/update";
+import KarbarEzafeValueErrModal from "../dialogs/karbarEzafeValueErr";
 const { ipcRenderer } = window.require('electron');
 
 const EntrySection = () => {
@@ -93,7 +94,7 @@ const EntrySection = () => {
     const [originCodeName, setOriginCodeName] = useState('');
     const [destCodeErr, setDestCodeErr] = useState(false);
     const [destCodeName, setDestCodeName] = useState('');
-    const [karbarEzafe, setKarbarEzafe] = useState(0);
+    const [karbarEzafe, setKarbarEzafe] = useState(null);
     const [karbarEzafeErr, setKarbarEzafeErr] = useState(false);
     const [karbarEzafeErrTxt, setKarbarEzafeErrTxt] = useState('');
     const [sanavat, setSanavat] = useState('');
@@ -104,6 +105,7 @@ const EntrySection = () => {
     const [tamdidErrTxt, setTamdidErrTxt] = useState('نرم افزارهای شبکه شامل سنوات نمی شوند');
     const [forooshJadid, setForooshJadid] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
+    const [karbarEzafeValueErr, setKarbarEzafeValueErr] = useState(false);
 
     ipcRenderer.on('updateMsg', (event, message) => {
         if (message.type === 'available') {
@@ -311,19 +313,23 @@ const EntrySection = () => {
     };
 
     const claculateKarbarEzafe = () => {
-        if (originCode) {
+        if (originCode && !destCode) {
+            console.log('1')
             if (tamdidPrice) {
-                if (karbarEzafe == 0 || networkCodes.includes(originCode)) {
+                console.log('2')
+                if (networkCodes.includes(originCode)) {
+                    console.log('3')
                     const karbarEzafeValue = (Number(tamdidPrice) / 10) * (Number(karbarEzafe))
                     setKarbarEzafePrice(karbarEzafeValue)
                 } else {
                     setKarbarEzafeErr(true);
-                    setKarbarEzafeErrTxt('کد نامعتبر')
+                    setKarbarEzafeErrTxt('کد غیر شبکه')
                 }
 
             } else {
-                
-                if (networkCodes.includes(originCode) || karbarEzafe == 0) {
+                console.log('4')
+                if (networkCodes.includes(originCode)) {
+                    console.log('5')
                     const karbarEzafeValue = Number(((appPrices[originCode]) / 10) * karbarEzafe)
                     setKarbarEzafePrice(karbarEzafeValue)
                 } else {
@@ -331,6 +337,15 @@ const EntrySection = () => {
                     setKarbarEzafeErrTxt('کد غیر شبکه')
                     setKarbarEzafePrice(0)
                 }
+            }
+        } else if (!originCode && destCode) {
+            if (networkCodes.includes(destCode)) {
+                const karbarEzafeValue = Number(((appPrices[destCode]) / 10) * karbarEzafe)
+                setKarbarEzafePrice(karbarEzafeValue)
+            } else {
+                setKarbarEzafeErr(true);
+                setKarbarEzafeErrTxt('کد غیر شبکه')
+                setKarbarEzafePrice(0)
             }
         }
     };
@@ -520,6 +535,7 @@ const EntrySection = () => {
 
     useEffect(() => {
         setTamdidPriceBefore(Number(tamdidPrice) - (Number(tamdidPrice)) / 10);
+        claculateKarbarEzafe()
     }, [tamdidPrice]);
 
     useEffect(() => {
@@ -691,7 +707,11 @@ const EntrySection = () => {
     }
 
     useEffect(() => {
-        calculate()
+        if(tamdidPrice && !karbarEzafe) {
+            setKarbarEzafeValueErr(true);
+        } else {
+            calculate();
+        }
     }, [calc]);
 
     useEffect(() => {
@@ -811,29 +831,32 @@ const EntrySection = () => {
                 <Stack direction='column' spacing={1}>
 
                     <Stack direction='column' spacing={2}>
-                        {/* <Divider sx={{ mb: 2 }}>
-                            <Chip label="سایر موارد" size="small" />
-                        </Divider> */}
 
-                        <Box>
-                            <FormControl error={karbarEzafeErr} fullWidth>
-                                <TextField onKeyDown={(event) => {
-                                    if (event.key === 'Enter') {
-                                        calculate()
-                                    }
-                                }} error={karbarEzafeErr} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
-                                <FormHelperText>
-                                    <Typography variant="caption">
-                                        {karbarEzafeErr ? (karbarEzafeErrTxt) : (karbaeEzafePrice == 0 ? ('\u00A0') : (Number(karbaeEzafePrice).toLocaleString()))}
-                                    </Typography>
-                                </FormHelperText>
-                            </FormControl>
-                        </Box>
+                        <Stack direction='row'>
+                            <Box sx={{width:'100%', mr:-2}}>
+                                <FormControlLabel sx={{ width: '8rem' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="کاربر جدید" />
+                            </Box>
+                            
+                            <Box sx={{width:'80%', mr:2}}>
+                                <FormControl error={karbarEzafeErr} fullWidth>
+                                    <TextField onKeyDown={(event) => {
+                                        if (event.key === 'Enter') {
+                                            calculate()
+                                        }
+                                    }} error={karbarEzafeErr} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
+                                    <FormHelperText>
+                                        <Typography variant="caption">
+                                            {karbarEzafeErr ? (karbarEzafeErrTxt) : (karbaeEzafePrice == 0 ? ('\u00A0') : (Number(karbaeEzafePrice).toLocaleString()))}
+                                        </Typography>
+                                    </FormHelperText>
+                                </FormControl>
+                            </Box>
+                        </Stack>
+
                     </Stack>
 
                     <FormGroup dir="rtl">
                         <Stack spacing={0.5}>
-                            {/* <FormControlLabel control={<Switch onChange={(e) => setChandSherkati(e.target.checked)} />} label="چند شرکتی" /> */}
                             <FormControlLabel control={<Switch onChange={(e) => setTabdilBeGhofl(e.target.checked)} />} label="تبدیل قفل به کارت" />
                         </Stack>
                     </FormGroup>
@@ -841,11 +864,8 @@ const EntrySection = () => {
                 </Stack>
             </Stack>
 
-            {/* <Divider sx={{ mb: 2, mt: 1 }}>
-                <Chip label="ماژول ها و خدمات" size="small" />
-            </Divider> */}
-
             <UpdateModal open={updateModal} setOpen={setUpdateModal} />
+            <KarbarEzafeValueErrModal open={karbarEzafeValueErr} setOpen={setKarbarEzafeValueErr} />
 
         </Box >
     );

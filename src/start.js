@@ -14,10 +14,10 @@ let mainWindow
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        // width: 1545,
-        // height: 896,
-        width: 1037,
-        height: 697,
+        width: 1545,
+        height: 896,
+        // width: 1037,
+        // height: 697,
         webPreferences: {
             sandbox: false,
             nodeIntegration: true,
@@ -30,7 +30,7 @@ function createWindow() {
 
     mainWindow.setMenuBarVisibility(false)
 
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     mainWindow.loadURL(
         process.env.ELECTRON_START_URL ||
