@@ -15,17 +15,17 @@ const ButtonsSection = () => {
 
     return (
 
-        <Box sx={{ width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', borderRadius: 5, boxShadow: 3, p: 1.5, display: 'flex', flexDirection: 'row', mt:1 }}>
+        <Box sx={{ width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', borderRadius: 5, boxShadow: 3, p: 1.5, display: 'flex', flexDirection: 'row', mt:4 }}>
 
             <Button onClick={() => {
                 { ipcRenderer.send('reset', []) }
-            }} color="warning" sx={{ ml: 2, width: '50%' }} variant="outlined" endIcon={<RestartAltOutlinedIcon sx={{ width: 35, height: 35 }} />}>
+            }} color="warning" sx={{ ml: 2, width: '50%' }} variant="outlined" endIcon={<RestartAltOutlinedIcon sx={{ width: 35, height: 55 }} />}>
                 <Typography variant="h6" sx={{ ml: 4 }}>
                     پاک کردن فرم
                 </Typography>
             </Button>
 
-            <Button color="info" sx={{ width: '50%' }} variant="outlined" endIcon={<CalculateOutlinedIcon sx={{ width: 35, height: 35 }} />} onClick={handleChange} >
+            <Button color="info" sx={{ width: '50%' }} variant="outlined" endIcon={<CalculateOutlinedIcon sx={{ width: 35, height: 55 }} />} onClick={handleChange} >
                 <Typography variant="h6" sx={{ ml: 4 }}>
                     محاسبه
                 </Typography>
