@@ -20,15 +20,25 @@ const ResultsSection = ({ open, setOpen }) => {
         jameKolBefore, setJameKolBefore,
         originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
         destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
-        printRes, setPrintRes } = GeneralState();
+        printRes, setPrintRes,
+        saleTakhfif, setSaleTakhfif,
+        tamdidTakhfif, setTamdidTakhfif,
+        karbarEzafeTakhfif, setKarbarEzafeTakhfif,
+        chandSherkatiTakhfif, setChandSherkatiTakhfif,
+        tabdilBeGhoflTakhfif, setTabdilBeGhoflTakhfif,
+        modulesTakhfif, setModulesTakhfif,
+        bargashtiTakhfif, setBargashtiTakhfif,
+        khadamatTakhfif, setKhadamatTakhfif,
+        saleTakhfifAmount, setSaleTakhfifAmount,
+        upgradeTakhfifAmount, setUpgradeTakhfifAmount } = GeneralState();
 
         const printResults = () => {
             window.print()
             setPrintRes(false)
         }
 
-    function createData(name, beforeArzesh, afterArzesh, afterTakhfif) {
-        return { name, beforeArzesh, afterArzesh, afterTakhfif };
+    function createData(name, beforeArzesh, afterArzesh, takhfifAmount, afterTakhfif) {
+        return { name, beforeArzesh, afterArzesh, takhfifAmount, afterTakhfif };
     };
 
     useEffect(() => {
@@ -40,9 +50,9 @@ const ResultsSection = ({ open, setOpen }) => {
     const rows = [
         createData('قیمت کد مبدا', Number(originPriceBefore).toLocaleString(), Number(originPrice).toLocaleString(), '-'),
         createData('قیمت چند شرکتی مبدا', Number(originChandSherkatiPriceBefore).toLocaleString(), Number(originChandSherkatiPrice).toLocaleString(), '-'),
-        createData('قیمت کد مقصد', Number(destPriceBefore).toLocaleString(), Number(destPrice).toLocaleString(), Number(destAfterTakhfif).toLocaleString()),
+        createData('قیمت کد مقصد', Number(destPriceBefore).toLocaleString(), Number(destPrice).toLocaleString(), Number(saleTakhfifAmount).toLocaleString(), Number(destAfterTakhfif).toLocaleString()),
         createData('قیمت چند شرکتی مقصد', Number(destChandSherkatiPriceBefore).toLocaleString(), Number(destChandSherkatiPrice).toLocaleString(), '-'),
-        createData('مابه التفاوت ارتقا', Number(upgradeDifferenceBefore).toLocaleString(), Number(upgradeDifference).toLocaleString(), Number(upgradeAfterTakhfif).toLocaleString()),
+        createData('مابه التفاوت ارتقا', Number(upgradeDifferenceBefore).toLocaleString(), Number(upgradeDifference).toLocaleString(), Number(upgradeTakhfifAmount).toLocaleString(), Number(upgradeAfterTakhfif).toLocaleString()),
         createData('قیمت تمدید', Number(tamdidPriceBefore).toLocaleString(), Number(tamdidPrice).toLocaleString(), Number(tamdidAfterTakhfif).toLocaleString()),
         // createData('قیمت تمدید تشویقی', Number(tashvighiPriceBefore).toLocaleString(), Number(tashvighiPrice).toLocaleString(), '-'),
         createData('تمدید متوالی(کسر از تمدید) ', Number(motevaliPriceBefore).toLocaleString(), Number(motevaliPrice).toLocaleString(), '-'),
@@ -59,7 +69,7 @@ const ResultsSection = ({ open, setOpen }) => {
         <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
 
             <TableContainer dir="rtl" component={Paper}>
-                <Table sx={{ width: 550 }} size="small" aria-label="simple table">
+                <Table sx={{ width: 620 }} size="small" aria-label="simple table">
                     <TableHead>
                         <TableRow sx={{ backgroundColor: '#4a703b' }}>
                             <TableCell><Typography color='white' variant="body2" >سرفصل خدمت</Typography></TableCell>
@@ -81,7 +91,7 @@ const ResultsSection = ({ open, setOpen }) => {
                                 </TableCell>
                                 <TableCell align="center"><Typography variant="caption" >{row.afterArzesh}</Typography></TableCell>
                                 <TableCell align="center"><Typography variant="caption" >{row.beforeArzesh}</Typography></TableCell>
-                                <TableCell align="center"><Typography variant="caption" >{2}</Typography></TableCell>
+                                <TableCell align="center"><Typography variant="caption" >{row.takhfifAmount}</Typography></TableCell>
                                 <TableCell align="center"><Typography variant="caption" >{row.afterTakhfif}</Typography></TableCell>
                             </TableRow>
                         ))}

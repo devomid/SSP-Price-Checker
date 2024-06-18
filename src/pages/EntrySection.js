@@ -88,6 +88,8 @@ const EntrySection = () => {
         jameKolBefore, setJameKolBefore,
         originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
         destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
+        saleTakhfifAmount, setSaleTakhfifAmount,
+        upgradeTakhfifAmount, setUpgradeTakhfifAmount
     } = GeneralState();
 
     const [originErr, setOriginErr] = useState(false);
@@ -374,16 +376,21 @@ const EntrySection = () => {
     };
 
     const calculateSaleTakhfif = () => {
-        if (saleTakhfif && originCode && !upgradeDifference) {
-            const saleAfter = Number(originPrice) - ((Number(originPrice) * Number(saleTakhfif)) / 100)
+        if (saleTakhfif && destCode && !upgradeDifference) {
+            console.log('hi')
+            const saleTakhfifAmountF = ((Number(destPrice) * Number(saleTakhfif)) / 100);
+            const saleAfter = Number(destPrice) - saleTakhfifAmountF;
             setDestAfterTakhfif(saleAfter)
+            setSaleTakhfifAmount(saleTakhfifAmountF)
         } else setDestAfterTakhfif(0)
     };
 
     const calculateUpgradeTakhfif = () => {
         if (saleTakhfif && upgradeDifference) {
-            const UpgradeAdter = Number(upgradeDifference) - ((Number(upgradeDifference) * Number(saleTakhfif)) / 100)
+            const upgradeTakhfifAmountF = ((Number(upgradeDifference) * Number(saleTakhfif)) / 100)
+            const UpgradeAdter = Number(upgradeDifference) - upgradeTakhfifAmountF
             setUpgradeAfterTakhfif(UpgradeAdter)
+            setUpgradeTakhfifAmount(upgradeTakhfifAmountF)
         } else if (saleTakhfif && !upgradeDifference) {
             setTamdidAfterTakhfifErr(true)
             setUpgradeAfterTakhfif(0)
@@ -474,14 +481,14 @@ const EntrySection = () => {
                 setJameKol(total - Number(destPrice));
             };
         };
-        setTashvighiPriceBefore(Number(tashvighiPrice) - (Number(tashvighiPrice)) / 10);
-        setMotevaliPriceBefore(Number(motevaliPrice) - (Number(motevaliPrice)) / 10);
-        setKarbarEzafePriceBefore(Number(karbaeEzafePrice) - (Number(karbaeEzafePrice)) / 10);
-        setChandSherkatiPriceBefore(Number(chandSherkatiPrice) - (Number(chandSherkatiPrice)) / 10);
-        setTabdilBeGhoflPriceBefore(Number(tabdilBeGhoflPrice) - (Number(tabdilBeGhoflPrice)) / 10);
-        setModulesPriceBefore(Number(modulesPrice) - (Number(modulesPrice)) / 10);
-        setBargashtiPriceBefore(Number(bargashtiPrice) - (Number(bargashtiPrice)) / 10);
-        setKhadamatPriceBefore(Number(khadamatPrice) - (Number(khadamatPrice)) / 10);
+        setTashvighiPriceBefore(Number(tashvighiPrice) / 1.1);
+        setMotevaliPriceBefore(Number(motevaliPrice) / 1.1);
+        setKarbarEzafePriceBefore(Number(karbaeEzafePrice) / 1.1);
+        setChandSherkatiPriceBefore(Number(chandSherkatiPrice) / 1.1);
+        setTabdilBeGhoflPriceBefore(Number(tabdilBeGhoflPrice) / 1.1);
+        setModulesPriceBefore(Number(modulesPrice) / 1.1);
+        setBargashtiPriceBefore(Number(bargashtiPrice) / 1.1);
+        setKhadamatPriceBefore(Number(khadamatPrice) / 1.1);
     };
 
     const calculateBeforeArzeshAfzoode = () => {
@@ -513,11 +520,11 @@ const EntrySection = () => {
     };
 
     useEffect(() => {
-        setOriginPriceBefore(Number(originPrice) - (Number(originPrice)) / 10);
+        setOriginPriceBefore(Number(originPrice) / 1.1);
     }, [originPrice]);
 
     useEffect(() => {
-        setDestPriceBefore(Number(destPrice) - (Number(destPrice)) / 10);
+        setDestPriceBefore(Number(destPrice) / 1.1);
     }, [destPrice]);
 
     useEffect(() => {
@@ -525,24 +532,24 @@ const EntrySection = () => {
     }, [destPrice, originPrice]);
 
     useEffect(() => {
-        setUpgradeDifferenceBefore(Number(upgradeDifference) - (Number(upgradeDifference)) / 10);
+        setUpgradeDifferenceBefore(Number(upgradeDifference) / 1.1);
     }, [upgradeDifference]);
 
     useEffect(() => {
-        setOriginChandSherkatiPriceBefore(Number(originChandSherkatiPrice) - (Number(originChandSherkatiPrice)) / 10);
+        setOriginChandSherkatiPriceBefore(Number(originChandSherkatiPrice)  / 1.1);
     }, [originChandSherkatiPrice]);
 
     useEffect(() => {
-        setDestChandSherkatiPriceBefore(Number(destChandSherkatiPrice) - (Number(destChandSherkatiPrice)) / 10);
+        setDestChandSherkatiPriceBefore(Number(destChandSherkatiPrice) / 1.1);
     }, [destChandSherkatiPrice]);
 
     useEffect(() => {
-        setTamdidPriceBefore(Number(tamdidPrice) - (Number(tamdidPrice)) / 10);
+        setTamdidPriceBefore(Number(tamdidPrice) / 1.1);
         claculateKarbarEzafe()
     }, [tamdidPrice]);
 
     useEffect(() => {
-        setJameKolBefore(Number(jameKol) - (Number(jameKol)) / 10);
+        setJameKolBefore(Number(jameKol) / 1.1);
     }, [jameKol]);
 
     useEffect(() => {
@@ -555,7 +562,7 @@ const EntrySection = () => {
 
     useEffect(() => {
         calculateSaleTakhfif()
-    }, [saleTakhfif]);
+    }, [saleTakhfif, saleTakhfifAmount]);
 
     useEffect(() => {
         calculateTamdidTakhfif()
@@ -587,15 +594,15 @@ const EntrySection = () => {
 
     useEffect(() => {
         calculateBeforeArzeshAfzoode();
-    }, [destPriceBefore, tamdidPriceBefore, karbaeEzafePriceBefore, chandSherkatiPriceBefore, tabdilBeGhoflPriceBefore, modulesPriceBefore, bargashtiPriceBefore, khadamatPriceBefore, motevaliPriceBefore, forooshJadid])
+    }, [destPriceBefore, saleTakhfifAmount, tamdidPriceBefore, karbaeEzafePriceBefore, chandSherkatiPriceBefore, tabdilBeGhoflPriceBefore, modulesPriceBefore, bargashtiPriceBefore, khadamatPriceBefore, motevaliPriceBefore, forooshJadid])
 
     useEffect(() => {
         calculateJameKol();
-    }, [destPrice, upgradeDifference, tamdidPrice, karbaeEzafePrice, chandSherkatiPrice, tabdilBeGhoflPrice, modulesPrice, bargashtiPrice, khadamatPrice, motevaliPrice, forooshJadid])
+    }, [destPrice, saleTakhfifAmount, upgradeDifference, tamdidPrice, karbaeEzafePrice, chandSherkatiPrice, tabdilBeGhoflPrice, modulesPrice, bargashtiPrice, khadamatPrice, motevaliPrice, forooshJadid])
 
     useEffect(() => {
         calculateJameKolTakhfif();
-    }, [destAfterTakhfif, tamdidAfterTakhfif, karbarEzafeAfterTakhfif, chandSherkatiAfterTakhfif, tabdilBeGhoflAfterTakhfif, modulesAfterTakhfif, bargashtiAfterTakhfif, khadamatAfterTakhfif])
+    }, [destAfterTakhfif, saleTakhfifAmount, tamdidAfterTakhfif, karbarEzafeAfterTakhfif, chandSherkatiAfterTakhfif, tabdilBeGhoflAfterTakhfif, modulesAfterTakhfif, bargashtiAfterTakhfif, khadamatAfterTakhfif])
 
     const calculate = () => {
         if (tamdidDate !== '' && !karbarEzafe) {

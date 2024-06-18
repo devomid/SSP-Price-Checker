@@ -24,6 +24,9 @@ const GeneralProvider = ({ children }) => {
     const [bargashtiTakhfif, setBargashtiTakhfif] = useState(0);
     const [khadamatTakhfif, setKhadamatTakhfif] = useState(0);
 
+    const [saleTakhfifAmount, setSaleTakhfifAmount] = useState(0);
+    const [upgradeTakhfifAmount, setUpgradeTakhfifAmount] = useState(0);
+
     const [originPrice, setOriginPrice] = useState(0);
     const [destPrice, setDestPrice] = useState(0);
     const [originChandSherkatiPrice, setOriginChandSherkatiPrice] = useState(null);
@@ -161,7 +164,9 @@ const GeneralProvider = ({ children }) => {
             jameKolBefore, setJameKolBefore,
             originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
             destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
-            printRes, setPrintRes
+            printRes, setPrintRes,
+            saleTakhfifAmount, setSaleTakhfifAmount,
+            upgradeTakhfifAmount, setUpgradeTakhfifAmount
         }}>
             {children}
         </GeneralContext.Provider>
