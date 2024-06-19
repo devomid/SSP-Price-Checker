@@ -89,7 +89,13 @@ const EntrySection = () => {
         originChandSherkatiPriceBefore, setOriginChandSherkatiPriceBefore,
         destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
         saleTakhfifAmount, setSaleTakhfifAmount,
-        upgradeTakhfifAmount, setUpgradeTakhfifAmount
+        upgradeTakhfifAmount, setUpgradeTakhfifAmount,
+        destChandSherkatiTakhfifAmount, setDestChandSherkatiTakhfifAmount,
+        tamdidTakhfifAmount, setTamdidTakhfifAmount,
+        karbarEzafeTakhfifAmount, setKarbarEzafeTakhfifAmount,
+        modulesTakhfifAmount, setModulesTakhfifAmount,
+        khadamatTakhfifAmount, setKhadamatTakhfifAmount,
+        jameKolaTakhfifAmount, setJameKolTakhfifAmount
     } = GeneralState();
 
     const [originErr, setOriginErr] = useState(false);
@@ -126,13 +132,18 @@ const EntrySection = () => {
     const calculateUpgrade = async () => {
         let upgradeDiffValue;
 
-        if (appCodes.hasOwnProperty(originCode) && appCodes.hasOwnProperty(destCode)) {
-            setOriginPrice(Number(appPrices[originCode]));
-            setDestPrice(Number(appPrices[destCode]));
+        if (appCodes.hasOwnProperty(originCode) || appCodes.hasOwnProperty(destCode)) {
+            if(originCode && ! destCode) {
+                setDestPrice(0);
+                setOriginPrice(Number(appPrices[originCode]));
+            } else if (destCode && !originCode) {
+                setOriginPrice(0)
+                setDestPrice(Number(appPrices[destCode]));
+            }
             const halfOriginPrice = originPrice / 2;
             const halfDestPrice = destPrice / 2;
 
-            if (originPrice !== 0 && destPrice !== 0) {
+            if (originPrice && destPrice) {
 
                 if (originChandSherkati && !destChandSherkati) {
                     setOriginChandSherkatiPrice(halfOriginPrice);
@@ -157,12 +168,14 @@ const EntrySection = () => {
                     await setUpgradeDifference(upgradeDiffValue);
                 }
 
-            } else if (originPrice == 0 && destPrice !== 0 && destChandSherkati) {
-                setDestChandSherkatiPrice(halfDestPrice);
+            } else if (originPrice && !destPrice && originChandSherkati) {
+                setDestPrice(0);
+                setOriginChandSherkatiPrice(halfOriginPrice);
                 await setUpgradeDifference(0)
-
-            } else if (originPrice !== 0 && destPrice == 0 && originChandSherkati) {
-                setOriginChandSherkatiPrice(halfDestPrice);
+                
+            } else if (!originPrice && destPrice && destChandSherkati) {
+                setOriginPrice(0)
+                setDestChandSherkatiPrice(halfDestPrice);
                 await setUpgradeDifference(0)
 
             } else {
@@ -175,7 +188,7 @@ const EntrySection = () => {
 
     const originCodeValidation = () => {
         setOriginErr(false);
-
+        
         if (originCode && appCodes.hasOwnProperty(originCode)) {
             setOriginPrice(appPrices[originCode]);
             setOriginCodeName(appCodes[originCode]);
@@ -205,6 +218,8 @@ const EntrySection = () => {
         const currentDate = moment();
         const differdDate = moment(tamdidDate, 'jYYYY/jMM/jDD');
         const daysDifference = currentDate.diff(differdDate, 'days');
+        const tamdidPrice = tamdidPrices[originCode]
+        const formattedTamdidPrice = Number(tamdidPrice).toLocaleString()
 
         if (tamdidDate) {
 
@@ -223,7 +238,7 @@ const EntrySection = () => {
             } else if (daysDifference > 1086) {
                 setSanavat('بالای ۲ سال');
             }
-        } else setSanavat('\u00A0')
+        } else setSanavat(`مبلغ تمدید عادی ${formattedTamdidPrice} ریال`)
     };
 
     const calculateTamdid = () => {
@@ -319,11 +334,8 @@ const EntrySection = () => {
 
     const claculateKarbarEzafe = () => {
         if (originCode && !destCode) {
-            console.log('1')
             if (tamdidPrice) {
-                console.log('2')
                 if (networkCodes.includes(originCode) || karbarEzafe == 0) {
-                    console.log('3')
                     const karbarEzafeValue = (Number(tamdidPrice) / 10) * (Number(karbarEzafe))
                     setKarbarEzafePrice(karbarEzafeValue)
                 } else {
@@ -332,9 +344,7 @@ const EntrySection = () => {
                 }
 
             } else {
-                console.log('4')
                 if (networkCodes.includes(originCode) || karbarEzafe == 0) {
-                    console.log('5')
                     const karbarEzafeValue = Number(((appPrices[originCode]) / 10) * karbarEzafe)
                     setKarbarEzafePrice(karbarEzafeValue)
                 } else {
@@ -363,7 +373,7 @@ const EntrySection = () => {
 
     const calculateTabdilBeGhofl = () => {
         if (originCode && tabdilBeGhofl) {
-            setTabdilBeGhoflPrice(6500000)
+            setTabdilBeGhoflPrice(7150000)
         } else setTabdilBeGhoflPrice(0)
     };
 
@@ -399,7 +409,9 @@ const EntrySection = () => {
 
     const calculateTamdidTakhfif = () => {
         if (tamdidTakhfif && originCode && tamdidDate) {
-            const tamdidAfter = Number(tamdidPrice) - ((Number(tamdidPrice) * Number(tamdidTakhfif)) / 100)
+            const takhfifAmount = ((Number(tamdidPrice) * Number(tamdidTakhfif)) / 100)
+            const tamdidAfter = Number(tamdidPrice) - takhfifAmount
+            setTamdidTakhfifAmount(takhfifAmount)
             setTamdidAfterTakhfif(tamdidAfter)
         } else if (tamdidTakhfif && !originCode && !tamdidDate) {
             setTamdidAfterTakhfifErr(true)
@@ -409,7 +421,9 @@ const EntrySection = () => {
 
     const claculateKarbarEzafeTakhfif = () => {
         if (karbarEzafeTakhfif && karbaeEzafePrice) {
-            const karbarEzafeAfter = Number(karbaeEzafePrice) - ((Number(karbaeEzafePrice) * Number(karbarEzafeTakhfif)) / 100)
+            const takhfifAmount = ((Number(karbaeEzafePrice) * Number(karbarEzafeTakhfif)) / 100)
+            const karbarEzafeAfter = Number(karbaeEzafePrice) - takhfifAmount
+            setKarbarEzafeTakhfifAmount(takhfifAmount)
             setKarbarEzafeAfterTakhfif(karbarEzafeAfter)
         } else if (karbarEzafeTakhfif && !karbaeEzafePrice) {
             setKarbarEzafeAfterTakhfifErr(true)
@@ -418,13 +432,15 @@ const EntrySection = () => {
     };
 
     const calculateChandSherkatiTakhfif = () => {
-        if (chandSherkatiTakhfif && chandSherkatiPrice) {
-            const ChandSherkatiAfter = Number(chandSherkatiPrice) - ((Number(chandSherkatiPrice) * Number(chandSherkatiTakhfif)) / 100)
-            setChandSherkatiAfterTakhfif(ChandSherkatiAfter)
-        } else if (chandSherkatiTakhfif && !chandSherkatiPrice) {
-            setChandSherkatiAfterTakhfifErr(true)
-            setChandSherkatiAfterTakhfif(0)
-        } else setChandSherkatiAfterTakhfif(0)
+        if (chandSherkatiTakhfif && destChandSherkatiPrice) {
+            const chandSherkatiTakhfifAmount = ((Number(destChandSherkatiPrice) * Number(chandSherkatiTakhfif)) / 100);
+            const ChandSherkatiAfter = Number(destChandSherkatiPrice) - chandSherkatiTakhfifAmount;
+            setChandSherkatiAfterTakhfif(ChandSherkatiAfter);
+            setDestChandSherkatiTakhfifAmount(chandSherkatiTakhfifAmount);
+        } else if (chandSherkatiTakhfif && !destChandSherkatiPrice) {
+            setChandSherkatiAfterTakhfifErr(true);
+            setChandSherkatiAfterTakhfif(0);
+        } else setChandSherkatiAfterTakhfif(0);
     };
 
     const calculateTabdilBeGhoflTakhfif = () => {
@@ -439,7 +455,9 @@ const EntrySection = () => {
 
     const calculateModulesTakhfif = () => {
         if (modulesTakhfif && modulesPrice) {
-            const modulesAfter = Number(modulesPrice) - ((Number(modulesPrice) * Number(modulesTakhfif)) / 100)
+            const takhfifAmount = ((Number(modulesPrice) * Number(modulesTakhfif)) / 100)
+            const modulesAfter = Number(modulesPrice) - takhfifAmount
+            setModulesTakhfifAmount(takhfifAmount);
             setModulesAfterTakhfif(modulesAfter)
         } else if (modulesTakhfif && !modulesPrice) {
             setModulesAfterTakhfifErr(true)
@@ -459,7 +477,9 @@ const EntrySection = () => {
 
     const calculateKhadamatTakhfif = () => {
         if (khadamatTakhfif && khadamatPrice) {
-            const khadamatAfter = Number(khadamatPrice) - ((Number(khadamatPrice) * Number(khadamatTakhfif)) / 100)
+            const takhfifAmount = ((Number(khadamatPrice) * Number(khadamatTakhfif)) / 100)
+            const khadamatAfter = Number(khadamatPrice) - takhfifAmount
+            setKhadamatTakhfifAmount(takhfifAmount);
             setKhadamatAfterTakhfif(khadamatAfter)
         } else if (khadamatTakhfif && !khadamatPrice) {
             setKhadamatAfterTakhfifErr(true)
@@ -468,7 +488,7 @@ const EntrySection = () => {
     };
 
     const calculateJameKol = () => {
-        let total = Number((Number(destPrice) + Number(upgradeDifference) + (Number(tamdidPrice) - Number(motevaliPrice)) + Number(karbaeEzafePrice) + Number(chandSherkatiPrice) + Number(tabdilBeGhoflPrice) + Number(modulesPrice) + Number(bargashtiPrice) + Number(khadamatPrice)));
+        let total = Number((Number(destPrice) + Number(upgradeDifference) + (Number(tamdidPrice) - Number(motevaliPrice)) + Number(karbaeEzafePrice) + Number(destChandSherkatiPrice) + Number(tabdilBeGhoflPrice) + Number(modulesPrice) + Number(khadamatPrice)) - Number(bargashtiPrice));
         if (forooshJadid) {
             setJameKol(total);
         } else if (!forooshJadid) {
@@ -506,7 +526,9 @@ const EntrySection = () => {
     }
 
     const calculateJameKolTakhfif = () => {
-        let totalAfter = (Number(destAfterTakhfif) + Number(tamdidAfterTakhfif) + Number(upgradeAfterTakhfif) + Number(karbarEzafeAfterTakhfif) + Number(chandSherkatiAfterTakhfif) + Number(tabdilBeGhoflAfterTakhfif) + Number(modulesAfterTakhfif) + Number(khadamatAfterTakhfif)) - (Number(motevaliPrice) + Number(bargashtiAfterTakhfif));
+        let totalAfter = (Number(destAfterTakhfif) + Number(tamdidAfterTakhfif) + Number(upgradeAfterTakhfif) + Number(karbarEzafeAfterTakhfif) + Number(chandSherkatiAfterTakhfif) + Number(tabdilBeGhoflAfterTakhfif) + Number(modulesAfterTakhfif) + Number(khadamatAfterTakhfif)) - (Number(motevaliPrice));
+        const takhfifAmount = Number(saleTakhfifAmount) + Number(upgradeTakhfifAmount) + Number(destChandSherkatiTakhfifAmount) + Number(tamdidTakhfifAmount) + Number(karbarEzafeTakhfifAmount) + Number(modulesTakhfifAmount) + Number(khadamatTakhfifAmount)
+        setJameKolTakhfifAmount(takhfifAmount)
         if (forooshJadid) {
             setJameKolAfterTakhfif(totalAfter);
         } else if (!forooshJadid) {
@@ -598,7 +620,7 @@ const EntrySection = () => {
 
     useEffect(() => {
         calculateJameKol();
-    }, [destPrice, saleTakhfifAmount, upgradeDifference, tamdidPrice, karbaeEzafePrice, chandSherkatiPrice, tabdilBeGhoflPrice, modulesPrice, bargashtiPrice, khadamatPrice, motevaliPrice, forooshJadid])
+    }, [destPrice, saleTakhfifAmount, upgradeDifference, tamdidPrice, karbaeEzafePrice, destChandSherkatiPrice, tabdilBeGhoflPrice, modulesPrice, bargashtiPrice, khadamatPrice, motevaliPrice, forooshJadid])
 
     useEffect(() => {
         calculateJameKolTakhfif();
@@ -850,11 +872,12 @@ const EntrySection = () => {
                     <Stack direction='column' spacing={2}>
 
                         <Stack direction='row'>
-                            <Box sx={{width:'100%', mr:-2}}>
+                            {/* <Box sx={{width:'100%', mr:-2}}>
                                 <FormControlLabel sx={{ width: '8rem' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="کاربر جدید" />
-                            </Box>
+                            </Box> */}
                             
-                            <Box sx={{width:'80%', mr:2}}>
+                            {/* <Box sx={{width:'100%', mr:2}}> */}
+                            <Box sx={{width:'100%'}}>
                                 <FormControl error={karbarEzafeErr} fullWidth>
                                     <TextField onKeyDown={(event) => {
                                         if (event.key === 'Enter') {
@@ -864,7 +887,7 @@ const EntrySection = () => {
                                     <Box sx={{height:'2rem', mb:1, display:'flex', justifyContent:'end'}}>
                                         <FormHelperText>
                                             <Typography color="royalblue" variant="caption">
-                                                {karbarEzafeErr ? (karbarEzafeErrTxt) : (karbaeEzafePrice == 0 ? ('\u00A0') : `${(Number(karbaeEzafePrice).toLocaleString())} ریال برای ${karbarEzafe} کاربر`)}
+                                                {karbarEzafeErr ? (karbarEzafeErrTxt) : (karbaeEzafePrice == 0 ? ('\u00A0') : `مبلغ ${(Number(karbaeEzafePrice).toLocaleString())} ریال برای ${karbarEzafe} کاربر`)}
                                             </Typography>
                                         </FormHelperText>
                                     </Box>

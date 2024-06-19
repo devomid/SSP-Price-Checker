@@ -26,9 +26,15 @@ const GeneralProvider = ({ children }) => {
 
     const [saleTakhfifAmount, setSaleTakhfifAmount] = useState(0);
     const [upgradeTakhfifAmount, setUpgradeTakhfifAmount] = useState(0);
+    const [destChandSherkatiTakhfifAmount, setDestChandSherkatiTakhfifAmount] = useState(0);
+    const [tamdidTakhfifAmount, setTamdidTakhfifAmount] = useState(0);
+    const [karbarEzafeTakhfifAmount, setKarbarEzafeTakhfifAmount] = useState(0);
+    const [modulesTakhfifAmount, setModulesTakhfifAmount] = useState(0);
+    const [khadamatTakhfifAmount, setKhadamatTakhfifAmount] = useState(0);
+    const [jameKolaTakhfifAmount, setJameKolTakhfifAmount] = useState(0);
 
-    const [originPrice, setOriginPrice] = useState(0);
-    const [destPrice, setDestPrice] = useState(0);
+    const [originPrice, setOriginPrice] = useState(null);
+    const [destPrice, setDestPrice] = useState(null);
     const [originChandSherkatiPrice, setOriginChandSherkatiPrice] = useState(null);
     const [destChandSherkatiPrice, setDestChandSherkatiPrice] = useState(null);
     const [upgradeDifference, setUpgradeDifference] = useState(0);
@@ -166,7 +172,13 @@ const GeneralProvider = ({ children }) => {
             destChandSherkatiPriceBefore, setDestChandSherkatiPriceBefore,
             printRes, setPrintRes,
             saleTakhfifAmount, setSaleTakhfifAmount,
-            upgradeTakhfifAmount, setUpgradeTakhfifAmount
+            upgradeTakhfifAmount, setUpgradeTakhfifAmount,
+            destChandSherkatiTakhfifAmount, setDestChandSherkatiTakhfifAmount,
+            tamdidTakhfifAmount, setTamdidTakhfifAmount,
+            karbarEzafeTakhfifAmount, setKarbarEzafeTakhfifAmount,
+            modulesTakhfifAmount, setModulesTakhfifAmount,
+            khadamatTakhfifAmount, setKhadamatTakhfifAmount,
+            jameKolaTakhfifAmount, setJameKolTakhfifAmount
         }}>
             {children}
         </GeneralContext.Provider>

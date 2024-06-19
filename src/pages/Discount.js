@@ -11,7 +11,7 @@ const DiscountSection = () => {
 
 
     return (
-        <Box sx={{ width: '20%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', borderRadius: 5, boxShadow: 3, padding: '1rem', justifyContent: 'center', alignItems: 'center', mt: '1rem', mr:1, ml:1 }}>
+        <Box sx={{ width: '20%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 50, 0.5)', borderRadius: 5, boxShadow: 3, padding: '1rem 1rem 0.5rem 1rem', justifyContent: 'center', alignItems: 'center', mt: '1rem', mr:1, ml:1 }}>
 
             <Stack sx={{mb:5.5}} spacing={3}>
 
@@ -41,7 +41,7 @@ const DiscountSection = () => {
                     }} onChange={(e) => setTamdidTakhfif(e.target.value)} InputLabelProps={{ style: { fontSize: '12px' } }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="تخفیف تمدید" variant="outlined" size="small" />
                 </FormControl>
 
-                <FormControl sx={{mt:13}}>
+                <FormControl sx={{mt:16}}>
                     <TextField onKeyDown={(event) => {
                         if (event.key === 'Enter') {
                             handleKeyDown()
@@ -49,7 +49,7 @@ const DiscountSection = () => {
                     }} onChange={(e) => setKarbarEzafeTakhfif(e.target.value)} InputLabelProps={{ style: { fontSize: '12px' } }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="تخفیف کاربر " variant="outlined" size="small" />
                 </FormControl>
    
-                <FormControl sx={{mt:14}}>
+                <FormControl sx={{mt:16}}>
                     <TextField onKeyDown={(event) => {
                         if (event.key === 'Enter') {
                             handleKeyDown()
@@ -57,7 +57,7 @@ const DiscountSection = () => {
                     }} onChange={(e) => setModulesTakhfif(e.target.value)} InputLabelProps={{ style: { fontSize: '12px' } }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="تخفیف ماژول" variant="outlined" size="small" />
                 </FormControl>
 
-                <FormControl sx={{mt:4}}>
+                <FormControl sx={{mt:5}}>
                     <TextField onKeyDown={(event) => {
                         if (event.key === 'Enter') {
                             handleKeyDown()
