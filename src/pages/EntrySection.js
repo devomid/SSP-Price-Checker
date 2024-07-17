@@ -147,12 +147,12 @@ const EntrySection = () => {
 
                 if (originChandSherkati && !destChandSherkati) {
                     setOriginChandSherkatiPrice(halfOriginPrice);
-                    upgradeDiffValue = destPrice - (originPrice + originChandSherkatiPrice);
+                    upgradeDiffValue = Number(destPrice) - (Number(originPrice) + Number(originChandSherkatiPrice));
                     await setUpgradeDifference(upgradeDiffValue);
 
                 } else if (destChandSherkati && !originChandSherkati) {
                     setDestChandSherkatiPrice(halfDestPrice);
-                    upgradeDiffValue = (destChandSherkatiPrice + destPrice) - originPrice;
+                    upgradeDiffValue = (Number(destChandSherkatiPrice) + Number(destPrice)) - Number(originPrice);
                     await setUpgradeDifference(upgradeDiffValue);
 
                 } else if (originChandSherkati && destChandSherkati) {
@@ -164,7 +164,7 @@ const EntrySection = () => {
                 } else {
                     setOriginChandSherkatiPrice(0);
                     setDestChandSherkatiPrice(0);
-                    upgradeDiffValue = destPrice - originPrice;
+                    upgradeDiffValue = Number(destPrice) - Number(originPrice);
                     await setUpgradeDifference(upgradeDiffValue);
                 }
 
