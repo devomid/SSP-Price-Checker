@@ -490,12 +490,17 @@ const EntrySection = () => {
 
     const calculateJameKol = () => {
         let total = Number((Number(destPrice) + Number(upgradeDifference) + (Number(tamdidPrice) - Number(motevaliPrice)) + Number(karbaeEzafePrice) + Number(destChandSherkatiPrice) + Number(tabdilBeGhoflPrice) + Number(modulesPrice) + Number(khadamatPrice)) - Number(bargashtiPrice));
+        console.log(forooshJadid);
         if (forooshJadid) {
             setJameKol(total);
         } else if (!forooshJadid) {
             const currentDate = moment();
             const differdDate = moment(tamdidDate, 'jYYYY/jMM/jDD');
             const daysDifference = currentDate.diff(differdDate, 'days');
+            if (upgradeDifference) {
+                setJameKol(upgradeDifference)
+                return
+            }
             if (daysDifference <= 365) {
                 setJameKol(total - Number(destPrice) - Number(tamdidPrice) + Number(tashvighiPrice));
             } else {
