@@ -133,7 +133,7 @@ const EntrySection = () => {
         let upgradeDiffValue;
 
         if (appCodes.hasOwnProperty(originCode) || appCodes.hasOwnProperty(destCode)) {
-            if(originCode && ! destCode) {
+            if (originCode && !destCode) {
                 setDestPrice(0);
                 setOriginPrice(Number(appPrices[originCode]));
             } else if (destCode && !originCode) {
@@ -147,18 +147,18 @@ const EntrySection = () => {
 
                 if (originChandSherkati && !destChandSherkati) {
                     setOriginChandSherkatiPrice(halfOriginPrice);
-                    upgradeDiffValue = destPrice - (originPrice + halfOriginPrice);
+                    upgradeDiffValue = destPrice - (originPrice + originChandSherkatiPrice);
                     await setUpgradeDifference(upgradeDiffValue);
 
                 } else if (destChandSherkati && !originChandSherkati) {
                     setDestChandSherkatiPrice(halfDestPrice);
-                    upgradeDiffValue = (halfDestPrice + destPrice) - originPrice;
+                    upgradeDiffValue = (destChandSherkatiPrice + destPrice) - originPrice;
                     await setUpgradeDifference(upgradeDiffValue);
 
                 } else if (originChandSherkati && destChandSherkati) {
                     setOriginChandSherkatiPrice(halfOriginPrice);
                     setDestChandSherkatiPrice(halfDestPrice);
-                    upgradeDiffValue = (halfDestPrice + destPrice) - (halfOriginPrice + originPrice);
+                    upgradeDiffValue = (Number(destChandSherkatiPrice) + Number(destPrice)) - Number(originChandSherkatiPrice) - Number(originPrice);
                     await setUpgradeDifference(upgradeDiffValue);
 
                 } else {
@@ -172,13 +172,14 @@ const EntrySection = () => {
                 setDestPrice(0);
                 setOriginChandSherkatiPrice(halfOriginPrice);
                 await setUpgradeDifference(0)
-                
+
             } else if (!originPrice && destPrice && destChandSherkati) {
                 setOriginPrice(0)
                 setDestChandSherkatiPrice(halfDestPrice);
                 await setUpgradeDifference(0)
 
             } else {
+                console.log(6);
                 setDestChandSherkatiPrice(0)
                 setOriginChandSherkatiPrice(0)
                 await setUpgradeDifference(0)
@@ -188,7 +189,7 @@ const EntrySection = () => {
 
     const originCodeValidation = () => {
         setOriginErr(false);
-        
+
         if (originCode && appCodes.hasOwnProperty(originCode)) {
             setOriginPrice(appPrices[originCode]);
             setOriginCodeName(appCodes[originCode]);
@@ -251,7 +252,7 @@ const EntrySection = () => {
             const tamdidAdi = Number(tamdidPrices[originCode]);
             const tashvighi = (Number(tamdidPrices[originCode])) - (((Number(tamdidPrices[originCode])) * 20) / 100);
             setTashvighiPrice(tashvighi);
-            
+
             if (networkCodes.includes(originCode) && daysDifference > 365) {
                 setTamdidPrice(tamdidAdi);
                 setTamdidErr(true);
@@ -551,14 +552,14 @@ const EntrySection = () => {
 
     useEffect(() => {
         calculateUpgrade()
-    }, [destPrice, originPrice]);
+    }, [destPrice, originPrice, destChandSherkatiPrice, originChandSherkatiPrice]);
 
     useEffect(() => {
         setUpgradeDifferenceBefore(Number(upgradeDifference) / 1.1);
     }, [upgradeDifference]);
 
     useEffect(() => {
-        setOriginChandSherkatiPriceBefore(Number(originChandSherkatiPrice)  / 1.1);
+        setOriginChandSherkatiPriceBefore(Number(originChandSherkatiPrice) / 1.1);
     }, [originChandSherkatiPrice]);
 
     useEffect(() => {
@@ -744,7 +745,7 @@ const EntrySection = () => {
     }
 
     useEffect(() => {
-        if(!karbarEzafeValueErr) {
+        if (!karbarEzafeValueErr) {
             calculate();
         }
     }, [calc]);
@@ -787,12 +788,12 @@ const EntrySection = () => {
                                 const updatedValue = e.target.value;
                                 setOriginCode(updatedValue)
                             }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
-                            <Box sx={{width:'7rem', mb:1, display:'flex', justifyContent:'end'}}>
-                            <FormHelperText>
-                                <Typography color="royalblue" noWrap variant="caption">
-                                    {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
-                                </Typography>
-                            </FormHelperText>
+                            <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
+                                <FormHelperText>
+                                    <Typography color="royalblue" noWrap variant="caption">
+                                        {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
+                                    </Typography>
+                                </FormHelperText>
                             </Box>
                         </FormControl>
 
@@ -805,12 +806,12 @@ const EntrySection = () => {
                                 const updatedValue = e.target.value;
                                 setDestCode(updatedValue);
                             }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="کد مقصد" variant="outlined" size="small" />
-                            <Box sx={{width:'7rem', mb:1, display:'flex', justifyContent:'end'}}>
-                            <FormHelperText>
-                                <Typography noWrap color="royalblue" variant="caption">
-                                    {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
-                                </Typography>
-                            </FormHelperText>
+                            <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
+                                <FormHelperText>
+                                    <Typography noWrap color="royalblue" variant="caption">
+                                        {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
+                                    </Typography>
+                                </FormHelperText>
                             </Box>
                         </FormControl>
 
@@ -833,7 +834,7 @@ const EntrySection = () => {
                             <Tooltip title="به ترتیب روز - ماه -  سال وارد شود" placement="top-start" arrow followCursor>
                                 <FormControl error={tamdidErr} fullWidth>
                                     <TextField inputProps={{ maxLength: 8 }} value={tamdidDate} error={tamdidErr} onChange={(e) => handleInputDate(e)} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} label='تاریخ شروع گارانتی' type="text" variant="outlined" size="small" />
-                                    <Box sx={{mb:1}}>
+                                    <Box sx={{ mb: 1 }}>
                                         <FormHelperText>
                                             <Typography color="royalblue" variant="caption">
                                                 {tamdidErr ? (tamdidErrTxt) : (
@@ -854,14 +855,14 @@ const EntrySection = () => {
                                     calculate()
                                 }
                             }} error={tamdidMotevaliErr} onChange={(e) => setTamdidMotevali(e.target.value)} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} label='سالهای متوالی تمدید' type="text" className="tamdidMotevali" id="tamdidMotevali" variant="outlined" size="small" />
-                            <Box sx={{height:'2rem', mb:1}}>
-                            <FormHelperText>
-                                <Typography color="royalblue" variant="caption">
-                                    {tamdidMotevaliErr ?
-                                        (tamdidMotevaliErrTxt)
-                                        : (tamdidMotevali ? `${tamdidMotevaliAmount} از مبلغ تمدید عادی کسر می‌شود` : '\u00A0')}
-                                </Typography>
-                            </FormHelperText>
+                            <Box sx={{ height: '2rem', mb: 1 }}>
+                                <FormHelperText>
+                                    <Typography color="royalblue" variant="caption">
+                                        {tamdidMotevaliErr ?
+                                            (tamdidMotevaliErrTxt)
+                                            : (tamdidMotevali ? `${tamdidMotevaliAmount} از مبلغ تمدید عادی کسر می‌شود` : '\u00A0')}
+                                    </Typography>
+                                </FormHelperText>
                             </Box>
                         </FormControl>
                     </Box>
@@ -875,16 +876,16 @@ const EntrySection = () => {
                             {/* <Box sx={{width:'100%', mr:-2}}>
                                 <FormControlLabel sx={{ width: '8rem' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="کاربر جدید" />
                             </Box> */}
-                            
+
                             {/* <Box sx={{width:'100%', mr:2}}> */}
-                            <Box sx={{width:'100%'}}>
+                            <Box sx={{ width: '100%' }}>
                                 <FormControl error={karbarEzafeErr} fullWidth>
                                     <TextField onKeyDown={(event) => {
                                         if (event.key === 'Enter') {
                                             calculate()
                                         }
                                     }} error={karbarEzafeErr} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
-                                    <Box sx={{height:'2rem', mb:1, display:'flex', justifyContent:'end'}}>
+                                    <Box sx={{ height: '2rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                         <FormHelperText>
                                             <Typography color="royalblue" variant="caption">
                                                 {karbarEzafeErr ? (karbarEzafeErrTxt) : (karbaeEzafePrice == 0 ? ('\u00A0') : `مبلغ ${(Number(karbaeEzafePrice).toLocaleString())} ریال برای ${karbarEzafe} کاربر`)}

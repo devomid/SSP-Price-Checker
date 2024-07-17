@@ -38,10 +38,10 @@ const ResultsSection = ({ open, setOpen }) => {
         khadamatTakhfifAmount, setKhadamatTakhfifAmount,
         jameKolaTakhfifAmount, setJameKolTakhfifAmount } = GeneralState();
 
-        const printResults = () => {
-            window.print()
-            setPrintRes(false)
-        }
+    const printResults = () => {
+        window.print()
+        setPrintRes(false)
+    }
 
     function createData(name, beforeArzesh, afterArzesh, takhfifAmount, afterTakhfif) {
         return { name, beforeArzesh, afterArzesh, takhfifAmount, afterTakhfif };
@@ -54,21 +54,21 @@ const ResultsSection = ({ open, setOpen }) => {
     }, [printRes])
 
     const rows = [
-        createData('قیمت کد مبدا', Number(originPriceBefore).toLocaleString(), Number(originPrice).toLocaleString(), '-', '-'),
-        createData('قیمت چند شرکتی مبدا', Number(originChandSherkatiPriceBefore).toLocaleString(), Number(originChandSherkatiPrice).toLocaleString(), '-', '-'),
-        createData('قیمت کد مقصد', Number(destPriceBefore).toLocaleString(), Number(destPrice).toLocaleString(), Number(saleTakhfifAmount).toLocaleString(), Number(destAfterTakhfif).toLocaleString()),
-        createData('قیمت چند شرکتی مقصد', Number(destChandSherkatiPriceBefore).toLocaleString(), Number(destChandSherkatiPrice).toLocaleString(), Number(destChandSherkatiTakhfifAmount).toLocaleString(), Number(chandSherkatiAfterTakhfif).toLocaleString()),
-        createData('مابه التفاوت ارتقا', Number(upgradeDifferenceBefore).toLocaleString(), Number(upgradeDifference).toLocaleString(), Number(upgradeTakhfifAmount).toLocaleString(), Number(upgradeAfterTakhfif).toLocaleString()),
-        createData('قیمت تمدید', Number(tamdidPriceBefore).toLocaleString(), Number(tamdidPrice).toLocaleString(),Number(tamdidTakhfifAmount).toLocaleString(), Number(tamdidAfterTakhfif).toLocaleString()),
+        createData('قیمت کد مبدا', Math.floor(Number(originPriceBefore)).toLocaleString(), Number(originPrice).toLocaleString(), '-', '-'),
+        createData('قیمت چند شرکتی مبدا', Math.floor(Number(originChandSherkatiPriceBefore)).toLocaleString(), Number(originChandSherkatiPrice).toLocaleString(), '-', '-'),
+        createData('قیمت کد مقصد', Math.floor(Number(destPriceBefore)).toLocaleString(), Number(destPrice).toLocaleString(), Number(saleTakhfifAmount).toLocaleString(), Number(destAfterTakhfif).toLocaleString()),
+        createData('قیمت چند شرکتی مقصد', Math.floor(Number(destChandSherkatiPriceBefore)).toLocaleString(), Number(destChandSherkatiPrice).toLocaleString(), Number(destChandSherkatiTakhfifAmount).toLocaleString(), Number(chandSherkatiAfterTakhfif).toLocaleString()),
+        createData('مابه التفاوت ارتقا', Math.floor(Number(upgradeDifferenceBefore)).toLocaleString(), Number(upgradeDifference).toLocaleString(), Number(upgradeTakhfifAmount).toLocaleString(), Number(upgradeAfterTakhfif).toLocaleString()),
+        createData('قیمت تمدید', Math.floor(Number(tamdidPriceBefore)).toLocaleString(), Number(tamdidPrice).toLocaleString(), Number(tamdidTakhfifAmount).toLocaleString(), Number(tamdidAfterTakhfif).toLocaleString()),
         // createData('قیمت تمدید تشویقی', Number(tashvighiPriceBefore).toLocaleString(), Number(tashvighiPrice).toLocaleString(), '-'),
-        createData('تمدید متوالی(کسر از تمدید) ', Number(motevaliPriceBefore).toLocaleString(), Number(motevaliPrice).toLocaleString(), '-', '-'),
-        createData('قیمت کاربر اضافه', Number(karbaeEzafePriceBefore).toLocaleString(), Number(karbaeEzafePrice).toLocaleString(), Number(karbarEzafeTakhfifAmount).toLocaleString(), Number(karbarEzafeAfterTakhfif).toLocaleString()),
+        createData('تمدید متوالی(کسر از تمدید) ', Math.floor(Number(motevaliPriceBefore)).toLocaleString(), Number(motevaliPrice).toLocaleString(), '-', '-'),
+        createData('قیمت کاربر اضافه', Math.floor(Number(karbaeEzafePriceBefore)).toLocaleString(), Number(karbaeEzafePrice).toLocaleString(), Number(karbarEzafeTakhfifAmount).toLocaleString(), Number(karbarEzafeAfterTakhfif).toLocaleString()),
         // createData('قیمت چند شرکتی', Number(chandSherkatiPriceBefore).toLocaleString(), Number(chandSherkatiPrice).toLocaleString(), Number(chandSherkatiAfterTakhfif).toLocaleString()),
-        createData('قیمت تبدیل قفل به کارت', Number(tabdilBeGhoflPriceBefore).toLocaleString(), Number(tabdilBeGhoflPrice).toLocaleString(), '-', '-'),
-        createData('قیمت کیت ها و ماژول ها', Number(modulesPriceBefore).toLocaleString(), Number(modulesPrice).toLocaleString(), Number(modulesTakhfifAmount).toLocaleString(), Number(modulesAfterTakhfif).toLocaleString()),
-        createData('قیمت کیت های برگشتی', Number(bargashtiPriceBefore).toLocaleString(), Number(bargashtiPrice).toLocaleString(), '-', '-'),
-        createData('قیمت خدمات کارشناسی', Number(khadamatPriceBefore).toLocaleString(), Number(khadamatPrice).toLocaleString(), Number(khadamatTakhfifAmount).toLocaleString(), Number(khadamatAfterTakhfif).toLocaleString()),
-        createData('جمع کل', Number(jameKolBefore).toLocaleString(), Number(jameKol).toLocaleString(), Number(jameKolaTakhfifAmount).toLocaleString(), Number(jameKolAfterTakhfif).toLocaleString()),
+        createData('قیمت تبدیل قفل به کارت', Math.floor(Number(tabdilBeGhoflPriceBefore)).toLocaleString(), Number(tabdilBeGhoflPrice).toLocaleString(), '-', '-'),
+        createData('قیمت کیت ها و ماژول ها', Math.floor(Number(modulesPriceBefore)).toLocaleString(), Number(modulesPrice).toLocaleString(), Number(modulesTakhfifAmount).toLocaleString(), Number(modulesAfterTakhfif).toLocaleString()),
+        createData('قیمت کیت های برگشتی', Math.floor(Number(bargashtiPriceBefore)).toLocaleString(), Number(bargashtiPrice).toLocaleString(), '-', '-'),
+        createData('قیمت خدمات کارشناسی', Math.floor(Number(khadamatPriceBefore)).toLocaleString(), Number(khadamatPrice).toLocaleString(), Number(khadamatTakhfifAmount).toLocaleString(), Number(khadamatAfterTakhfif).toLocaleString()),
+        createData('جمع کل', Math.floor(Number(jameKolBefore)).toLocaleString(), Number(jameKol).toLocaleString(), Number(jameKolaTakhfifAmount).toLocaleString(), Number(jameKolAfterTakhfif).toLocaleString()),
     ];
 
     return (
