@@ -26,9 +26,9 @@
 
 
 .odd-row {
-  background-color: rgba(199, 248, 112, 0.6);
+  background-color: rgba(0, 124, 50, 0.7);
 }
 
 .even-row {
-  background-color: #ffffff;
+  background-color: rgba(41, 128, 76, 0.25);
 }

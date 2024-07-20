@@ -77,7 +77,7 @@ const ResultsSection = ({ open, setOpen }) => {
             <TableContainer dir="rtl" component={Paper}>
                 <Table sx={{ width: 620 }} size="small" aria-label="simple table">
                     <TableHead>
-                        <TableRow sx={{ backgroundColor: '#4a703b' }}>
+                        <TableRow sx={{ backgroundColor: '#008f3a' }}>
                             <TableCell><Typography color='white' variant="body2" >سرفصل خدمت</Typography></TableCell>
                             <TableCell align="center"><Typography color='white' variant="caption" textAlign='center'>قیمت مصوب</Typography></TableCell>
                             <TableCell align="center"><Typography color='white' variant="caption" textAlign='center'>فی فروش</Typography></TableCell>
