@@ -809,7 +809,7 @@ const EntrySection = () => {
                             }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
                             <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                 <FormHelperText>
-                                    <Typography color="royalblue" noWrap variant="caption">
+                                    <Typography color="greenyellow" noWrap variant="caption">
                                         {originErr ? 'کد نامعتبر' : (originCodeName || '\u00A0')}
                                     </Typography>
                                 </FormHelperText>
@@ -841,7 +841,7 @@ const EntrySection = () => {
                             }} type="text" label="کد مقصد" variant="outlined" size="small" />
                             <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                 <FormHelperText>
-                                    <Typography noWrap color="royalblue" variant="caption">
+                                    <Typography noWrap color="greenyellow" variant="caption">
                                         {destCodeErr ? 'کد نامعتبر' : (destCodeName || '\u00A0')}
                                     </Typography>
                                 </FormHelperText>
@@ -883,7 +883,7 @@ const EntrySection = () => {
                                     }} label='تاریخ شروع گارانتی' type="text" variant="outlined" size="small" />
                                     <Box sx={{ mb: 1 }}>
                                         <FormHelperText>
-                                            <Typography color="royalblue" variant="caption">
+                                            <Typography color="greenyellow" variant="caption">
                                                 {tamdidErr ? (tamdidErrTxt) : (
                                                     sanavat ? (sanavat) : ('\u00A0')
                                                 )}
@@ -918,7 +918,7 @@ const EntrySection = () => {
                             }} label='سالهای متوالی تمدید' type="text" className="tamdidMotevali" id="tamdidMotevali" variant="outlined" size="small" />
                             <Box sx={{ height: '2rem', mb: 1 }}>
                                 <FormHelperText>
-                                    <Typography color="royalblue" variant="caption">
+                                    <Typography color="greenyellow" variant="caption">
                                         {tamdidMotevaliErr ?
                                             (tamdidMotevaliErrTxt)
                                             : (tamdidMotevali ? `${tamdidMotevaliAmount} از مبلغ تمدید عادی کسر می‌شود` : '\u00A0')}
@@ -962,7 +962,7 @@ const EntrySection = () => {
                                     }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
                                     <Box sx={{ height: '2rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                         <FormHelperText>
-                                            <Typography color="royalblue" variant="caption">
+                                            <Typography color="greenyellow" variant="caption">
                                                 {karbarEzafeErr ? (karbarEzafeErrTxt) : (karbaeEzafePrice == 0 ? ('\u00A0') : `مبلغ ${(Number(karbaeEzafePrice).toLocaleString())} ریال برای ${karbarEzafe} کاربر`)}
                                             </Typography>
                                         </FormHelperText>
