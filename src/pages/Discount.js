@@ -32,7 +32,7 @@ const DiscountSection = () => {
                         },
                         // Class for the label of the input field
                         "& .MuiInputLabel-outlined": {
-                            color: "rgb(197, 222, 199)",
+                            color: "white",
                         }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                     }} type="text" label="تخفیف فروش " variant="outlined" size="small" />
                 </FormControl>
@@ -54,7 +54,7 @@ const DiscountSection = () => {
                         },
                         // Class for the label of the input field
                         "& .MuiInputLabel-outlined": {
-                            color: "rgb(197, 222, 199)",
+                            color: "white",
                         }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                     }} type="text" label="تخفیف چند شرکتی" variant="outlined" size="small" />
                 </FormControl>
@@ -78,7 +78,7 @@ const DiscountSection = () => {
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
-                        color: "rgb(197, 222, 199)",
+                        color: "white",
                     }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                 }} type="text" label="تخفیف تمدید" variant="outlined" size="small" />
             </FormControl>
@@ -100,7 +100,7 @@ const DiscountSection = () => {
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
-                        color: "rgb(197, 222, 199)",
+                        color: "white",
                     }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                 }} type="text" label="تخفیف کاربر " variant="outlined" size="small" />
             </FormControl>
@@ -122,7 +122,7 @@ const DiscountSection = () => {
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
-                        color: "rgb(197, 222, 199)",
+                        color: "white",
                     }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                 }} type="text" label="تخفیف ماژول" variant="outlined" size="small" />
             </FormControl>
@@ -144,7 +144,7 @@ const DiscountSection = () => {
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
-                        color: "rgb(197, 222, 199)",
+                        color: "white",
                     }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                 }} type="text" label="تخفیف خدمات" variant="outlined" size="small" />
             </FormControl>
