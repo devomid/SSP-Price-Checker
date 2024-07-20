@@ -19,13 +19,13 @@ const ButtonsSection = () => {
 
             <Button onClick={() => {
                 { ipcRenderer.send('reset', []) }
-            }} color="warning" sx={{ ml: 2, width: '50%' }} variant="outlined" endIcon={<RestartAltOutlinedIcon sx={{ width: 35, height: 78 }} />}>
+            }} color="warning" sx={{ ml: 2, width: '50%' }} variant="contained" endIcon={<RestartAltOutlinedIcon sx={{ width: 35, height: 78 }} />}>
                 <Typography variant="h5" sx={{ ml: 4 }}>
                     پاک کردن فرم
                 </Typography>
             </Button>
 
-            <Button color="info" sx={{ width: '50%' }} variant="outlined" endIcon={<CalculateOutlinedIcon sx={{ width: 35, height: 78 }} />} onClick={handleChange} >
+            <Button color="info" sx={{ width: '50%' }} variant="contained" endIcon={<CalculateOutlinedIcon sx={{ width: 35, height: 78 }} />} onClick={handleChange} >
                 <Typography variant="h5" sx={{ ml: 4 }}>
                     محاسبه
                 </Typography>
