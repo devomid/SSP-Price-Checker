@@ -7,7 +7,7 @@ import MenuDrawer from "../dialogs/MenuDrawer";
 
 const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const {printRes, setPrintRes} = GeneralState();
+    const { printRes, setPrintRes } = GeneralState();
 
     const openDrawer = () => {
         setDrawerOpen(true);
@@ -24,11 +24,11 @@ const Navbar = () => {
                     <IconButton onClick={openDrawer} edge="start" color="inherit" aria-label="menu">
                         <MoreVertIcon />
                     </IconButton>
-                    <Tooltip title="چاپ نتایج" placement="right" >
+                    {/* <Tooltip title="چاپ نتایج" placement="right" >
                     <IconButton onClick={printIt} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                         <PrintOutlinedIcon />
                     </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                 </Toolbar>
             </AppBar>
 

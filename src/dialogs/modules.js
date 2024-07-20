@@ -73,8 +73,8 @@ const ModulesDialog = ({ open, setOpen }) => {
 
     return (
         <Box>
-            <Dialog sx={{ backgroundColor: 'rgba(252, 243, 224, 0.6)', backdropFilter: 'blur(12px) saturate(180%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
-                <DialogContent sx={{ height: 78, width: 500, backgroundColor: 'white' }}>
+            <Dialog sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px) saturate(280%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
+                <DialogContent sx={{ height: 78, width: 500 }}>
                     <Box sx={{ width: '52vh', display: 'flex', alignItems: 'flex-end', position: 'fixed' }}>
                         <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                         <TextField color="primary" sx={{ ml: 2 }} fullWidth onChange={handleSearchTermChange} id="input-with-sx" label="افزودن کیت و ماژول" variant="standard" style={{ direction: "rtl" }} />

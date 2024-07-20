@@ -11,7 +11,7 @@ const About = ({ open, setOpen }) => {
 
     return (
         <Box >
-            <Dialog open={open} keepMounted onClose={handleClose} scroll="paper">
+            <Dialog sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px) saturate(280%)' }} open={open} keepMounted onClose={handleClose} scroll="paper">
                 <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>درباره نرم افزار</DialogTitle>
                 <DialogContent dividers>
                     <Box sx={{ height: 200, mt: 2 }}>
@@ -28,7 +28,7 @@ const About = ({ open, setOpen }) => {
                                 SSP Price Calculation Utility{'\n'}
                                 created and developed by: Omid Azad{'\n'}
                                 Date created: May 5th 2024{'\n'}
-                                Ver 2.2.3
+                                Ver 2.3.0
                             </Typography>
                         </Box>
                     </Box>

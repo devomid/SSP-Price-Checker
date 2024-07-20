@@ -74,7 +74,7 @@ const BargashtiDialog = ({ open, setOpen }) => {
 
     return (
         <Box>
-            <Dialog open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
+            <Dialog sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px) saturate(280%)' }} open={open} keepMounted onClose={() => setOpen(false)} scroll="paper">
                 <DialogContent sx={{ height: 78, width: 500, backgroundColor: 'white' }}>
                     <Box sx={{ width: '52vh', display: 'flex', alignItems: 'flex-end', position: 'fixed' }}>
                         <SearchOutlinedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />

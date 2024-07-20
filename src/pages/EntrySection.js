@@ -777,7 +777,7 @@ const EntrySection = () => {
 
 
     return (
-        <Box sx={{ width: '70%', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
+        <Box sx={{ width: '70%', backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(5px) saturate(180%)', border: '1px solid rgba(38, 66, 77, 0.5)', mt: '1rem', borderRadius: 5, boxShadow: 3, padding: '1rem' }}>
             <Stack spacing={1}>
 
                 <Stack direction="row-reverse">
@@ -792,7 +792,21 @@ const EntrySection = () => {
                             }} error={originErr} defaultValue={originCode} onChange={(e) => {
                                 const updatedValue = e.target.value;
                                 setOriginCode(updatedValue)
-                            }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
+                            }} sx={{// Root class for the input field
+                                "& .MuiOutlinedInput-root": {
+                                    color: "#fff",
+                                    // Class for the border around the input field
+                                    "& .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: "#fff",
+                                        borderWidth: "0.7px",
+                                        borderRadius: 3
+                                    },
+                                },
+                                // Class for the label of the input field
+                                "& .MuiInputLabel-outlined": {
+                                    color: "rgb(197, 222, 199)",
+                                }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
+                            }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
                             <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                 <FormHelperText>
                                     <Typography color="royalblue" noWrap variant="caption">
@@ -810,7 +824,21 @@ const EntrySection = () => {
                             }} error={destCodeErr} onChange={(e) => {
                                 const updatedValue = e.target.value;
                                 setDestCode(updatedValue);
-                            }} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} type="text" label="کد مقصد" variant="outlined" size="small" />
+                            }} sx={{// Root class for the input field
+                                "& .MuiOutlinedInput-root": {
+                                    color: "#fff",
+                                    // Class for the border around the input field
+                                    "& .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: "#fff",
+                                        borderWidth: "0.7px",
+                                        borderRadius: 3
+                                    },
+                                },
+                                // Class for the label of the input field
+                                "& .MuiInputLabel-outlined": {
+                                    color: "rgb(197, 222, 199)",
+                                }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
+                            }} type="text" label="کد مقصد" variant="outlined" size="small" />
                             <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                 <FormHelperText>
                                     <Typography noWrap color="royalblue" variant="caption">
@@ -823,8 +851,8 @@ const EntrySection = () => {
                     </Stack>
 
                     <Stack direction="column" spacing={4}>
-                        <FormControlLabel sx={{ width: '9rem' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
-                        <FormControlLabel sx={{ width: '9rem' }} control={<Switch onChange={(e) => setDestChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
+                        <FormControlLabel sx={{ width: '9rem', color: 'white' }} control={<Switch onChange={(e) => setOriginChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
+                        <FormControlLabel sx={{ width: '9rem', color: 'white' }} control={<Switch onChange={(e) => setDestChandSherkati(e.target.checked)} />} labelPlacement="right" label="چند شرکتی" />
                     </Stack>
 
                 </Stack>
@@ -838,7 +866,21 @@ const EntrySection = () => {
 
                             <Tooltip title="به ترتیب روز - ماه -  سال وارد شود" placement="top-start" arrow followCursor>
                                 <FormControl error={tamdidErr} fullWidth>
-                                    <TextField inputProps={{ maxLength: 8 }} value={tamdidDate} error={tamdidErr} onChange={(e) => handleInputDate(e)} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} label='تاریخ شروع گارانتی' type="text" variant="outlined" size="small" />
+                                    <TextField inputProps={{ maxLength: 8 }} value={tamdidDate} error={tamdidErr} onChange={(e) => handleInputDate(e)} sx={{// Root class for the input field
+                                        "& .MuiOutlinedInput-root": {
+                                            color: "#fff",
+                                            // Class for the border around the input field
+                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                borderColor: "#fff",
+                                                borderWidth: "0.7px",
+                                                borderRadius: 3
+                                            },
+                                        },
+                                        // Class for the label of the input field
+                                        "& .MuiInputLabel-outlined": {
+                                            color: "rgb(197, 222, 199)",
+                                        }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
+                                    }} label='تاریخ شروع گارانتی' type="text" variant="outlined" size="small" />
                                     <Box sx={{ mb: 1 }}>
                                         <FormHelperText>
                                             <Typography color="royalblue" variant="caption">
@@ -859,7 +901,21 @@ const EntrySection = () => {
                                 if (event.key === 'Enter') {
                                     calculate()
                                 }
-                            }} error={tamdidMotevaliErr} onChange={(e) => setTamdidMotevali(e.target.value)} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} label='سالهای متوالی تمدید' type="text" className="tamdidMotevali" id="tamdidMotevali" variant="outlined" size="small" />
+                            }} error={tamdidMotevaliErr} onChange={(e) => setTamdidMotevali(e.target.value)} sx={{// Root class for the input field
+                                "& .MuiOutlinedInput-root": {
+                                    color: "#fff",
+                                    // Class for the border around the input field
+                                    "& .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: "#fff",
+                                        borderWidth: "0.7px",
+                                        borderRadius: 3
+                                    },
+                                },
+                                // Class for the label of the input field
+                                "& .MuiInputLabel-outlined": {
+                                    color: "rgb(197, 222, 199)",
+                                }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
+                            }} label='سالهای متوالی تمدید' type="text" className="tamdidMotevali" id="tamdidMotevali" variant="outlined" size="small" />
                             <Box sx={{ height: '2rem', mb: 1 }}>
                                 <FormHelperText>
                                     <Typography color="royalblue" variant="caption">
@@ -889,7 +945,21 @@ const EntrySection = () => {
                                         if (event.key === 'Enter') {
                                             calculate()
                                         }
-                                    }} error={karbarEzafeErr} sx={{ backgroundColor: 'rgba(252, 243, 224, 0.1)', backdropFilter: 'blur(5px) saturate(180%)' }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
+                                    }} error={karbarEzafeErr} sx={{// Root class for the input field
+                                        "& .MuiOutlinedInput-root": {
+                                            color: "#fff",
+                                            // Class for the border around the input field
+                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                borderColor: "#fff",
+                                                borderWidth: "0.7px",
+                                                borderRadius: 3
+                                            },
+                                        },
+                                        // Class for the label of the input field
+                                        "& .MuiInputLabel-outlined": {
+                                            color: "rgb(197, 222, 199)",
+                                        }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
+                                    }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
                                     <Box sx={{ height: '2rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
                                         <FormHelperText>
                                             <Typography color="royalblue" variant="caption">
@@ -905,7 +975,7 @@ const EntrySection = () => {
 
                     <FormGroup dir="rtl">
                         <Stack spacing={0.5}>
-                            <FormControlLabel control={<Switch onChange={(e) => setTabdilBeGhofl(e.target.checked)} />} label="تبدیل قفل به کارت" />
+                            <FormControlLabel sx={{ color: 'white' }} control={<Switch onChange={(e) => setTabdilBeGhofl(e.target.checked)} />} label="تبدیل قفل به کارت" />
                         </Stack>
                     </FormGroup>
 

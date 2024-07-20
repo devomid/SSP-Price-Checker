@@ -50,7 +50,7 @@ const HelpDialog = ({ open, setOpen }) => {
 
     return (
         <Box  >
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px) saturate(280%)' }} open={open} onClose={handleClose}>
                 <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>درباره نرم افزار</DialogTitle>
                 <DialogContent sx={{ height: 600 }} dividers>
                     {renderHelpPage()}

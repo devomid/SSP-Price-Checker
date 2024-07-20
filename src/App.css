@@ -6,7 +6,8 @@
 
 .App {
   position: fixed;
-  background-image: url('./assets/background/green/pngtree-green-watercolor-background-and-abstract-texture-background-picture-image_1230214.jpg');
+  /* background-image: url('./assets/background/green/pngtree-green-watercolor-background-and-abstract-texture-background-picture-image_1230214.jpg'); */
+  background-image: url('./assets/background/green/green-and-black-background-gradient-illustration-free-photo.jpg');
   margin-top: 15px;
   padding: 10px ;
   height: 993px;
