@@ -805,6 +805,10 @@ const EntrySection = () => {
                                 // Class for the label of the input field
                                 "& .MuiInputLabel-outlined": {
                                     color: "white",
+                                }, "&.Mui-focused": {
+                                    "& .MuiInputLabel-outlined": {
+                                        color: 'white'
+                                    },
                                 }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                             }} type="text" className="originCode" id="originCode" label="کد مبدا" variant="outlined" size="small" />
                             <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
@@ -837,6 +841,10 @@ const EntrySection = () => {
                                 // Class for the label of the input field
                                 "& .MuiInputLabel-outlined": {
                                     color: "white",
+                                }, "&.Mui-focused": {
+                                    "& .MuiInputLabel-outlined": {
+                                        color: 'white'
+                                    },
                                 }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                             }} type="text" label="کد مقصد" variant="outlined" size="small" />
                             <Box sx={{ width: '7rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
@@ -879,6 +887,10 @@ const EntrySection = () => {
                                         // Class for the label of the input field
                                         "& .MuiInputLabel-outlined": {
                                             color: "white",
+                                        }, "&.Mui-focused": {
+                                            "& .MuiInputLabel-outlined": {
+                                                color: 'white'
+                                            },
                                         }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                                     }} label='تاریخ شروع گارانتی' type="text" variant="outlined" size="small" />
                                     <Box sx={{ mb: 1 }}>
@@ -914,6 +926,10 @@ const EntrySection = () => {
                                 // Class for the label of the input field
                                 "& .MuiInputLabel-outlined": {
                                     color: "white",
+                                }, "&.Mui-focused": {
+                                    "& .MuiInputLabel-outlined": {
+                                        color: 'white'
+                                    },
                                 }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                             }} label='سالهای متوالی تمدید' type="text" className="tamdidMotevali" id="tamdidMotevali" variant="outlined" size="small" />
                             <Box sx={{ height: '2rem', mb: 1 }}>
@@ -958,6 +974,10 @@ const EntrySection = () => {
                                         // Class for the label of the input field
                                         "& .MuiInputLabel-outlined": {
                                             color: "white",
+                                        }, "&.Mui-focused": {
+                                            "& .MuiInputLabel-outlined": {
+                                                color: 'white'
+                                            },
                                         }, backgroundColor: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(5px) saturate(180%)', borderRadius: 3
                                     }} onChange={(e) => setKarbarEzafe(e.target.value)} label='کاربر اضافه' type="text" className="karbarEzafe" id="origikarbarEzafenCode" variant="outlined" size="small" />
                                     <Box sx={{ height: '2rem', mb: 1, display: 'flex', justifyContent: 'end' }}>
